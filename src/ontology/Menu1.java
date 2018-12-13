@@ -553,8 +553,11 @@ public class Menu1 extends JFrame {
                 System.out.print(i + " " + s.getSubject().getRequiredProperty(prefLabel).getObject() + "\t");
                 if (s.getObject().isLiteral() || s.getPredicate().getNameSpace().equals("http://www.w3.org/2000/01/rdf-schema#") || s.getPredicate().getNameSpace().equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#")) {
                     System.out.print(s.getPredicate().getLocalName() + "\t");
-                    if(!s.getObject().isLiteral()){
+                    if(s.getPredicate().getLocalName().equals("type")){
                         System.out.println(s.getObject().asResource().getLocalName());
+                    }
+                    else if(s.getPredicate().getLocalName().equals("subClassOf")){
+                        System.out.println(s.getObject().asResource().getProperty(prefLabel).getObject());
                     }
                     else{
                     System.out.println(s.getObject().toString());
@@ -586,6 +589,7 @@ public void scriviPDF(String path, String txt) throws IOException{
     if (writer != null)
     {
     }
+    writer.close();
    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
