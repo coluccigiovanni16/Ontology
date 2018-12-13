@@ -29,6 +29,15 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.Writer;
 import java.util.LinkedList;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 /**
  *
@@ -43,7 +52,7 @@ public class Menu1 extends JFrame {
 
         initComponents();
         jTextPane_results.setEditable(false);
-
+        caricaOntologie();
     }
 
     /**
@@ -58,7 +67,6 @@ public class Menu1 extends JFrame {
     LinkedList<OntModel> ontologies = new LinkedList<OntModel>();
     Property prefLabel;
     LinkedList<String> ontologiesName = new LinkedList<String>();
-
 
     public static void main(String args[]) throws FileNotFoundException, UnsupportedEncodingException {
         /* Create and display the form */
@@ -89,14 +97,12 @@ public class Menu1 extends JFrame {
         jButton_Save_as = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton_Search = new javax.swing.JButton();
-        jLabel_query = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextPane_results = new javax.swing.JTextPane();
         jCheckBox_Ontologia3 = new javax.swing.JCheckBox();
         jCheckBox_Ontologia4 = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         jButton_Cerca.setText("Cerca");
         jButton_Cerca.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,15 +126,15 @@ public class Menu1 extends JFrame {
         setForeground(java.awt.Color.white);
         setLocation(new java.awt.Point(400, 200));
         setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(650, 750));
-        setMinimumSize(new java.awt.Dimension(650, 750));
+        setMaximumSize(new java.awt.Dimension(950, 750));
+        setMinimumSize(new java.awt.Dimension(950, 750));
         setPreferredSize(new java.awt.Dimension(650, 750));
         setResizable(false);
-        setSize(new java.awt.Dimension(650, 750));
+        setSize(new java.awt.Dimension(950, 750));
         setType(java.awt.Window.Type.UTILITY);
 
-        campoCerca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        campoCerca.setText("Type a word to search...............");
+        campoCerca.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        campoCerca.setText("Type a word to search...");
         campoCerca.setName("patternToSearch"); // NOI18N
         campoCerca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -136,10 +142,10 @@ public class Menu1 extends JFrame {
             }
         });
 
-        Ontologia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Ontologia.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         Ontologia.setText("Ontologie:");
 
-        jCheckBox_Ontologia1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jCheckBox_Ontologia1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jCheckBox_Ontologia1.setForeground(new java.awt.Color(255, 0, 0));
         jCheckBox_Ontologia1.setText("GO");
         jCheckBox_Ontologia1.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +154,7 @@ public class Menu1 extends JFrame {
             }
         });
 
-        jCheckBox_Ontologia2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jCheckBox_Ontologia2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jCheckBox_Ontologia2.setForeground(new java.awt.Color(255, 0, 0));
         jCheckBox_Ontologia2.setText("ReXo");
         jCheckBox_Ontologia2.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +163,7 @@ public class Menu1 extends JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Result");
 
         ReadME.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -174,7 +180,7 @@ public class Menu1 extends JFrame {
         });
 
         jButton_Save_as.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton_Save_as.setText("Export as PDF");
+        jButton_Save_as.setText("Export as pdf");
         jButton_Save_as.setActionCommand("");
         jButton_Save_as.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -190,7 +196,7 @@ public class Menu1 extends JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ontology/logo_standard.png"))); // NOI18N
 
-        jButton_Search.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton_Search.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton_Search.setText("Search");
         jButton_Search.setEnabled(false);
         jButton_Search.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -204,12 +210,9 @@ public class Menu1 extends JFrame {
             }
         });
 
-        jLabel_query.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel_query.setText("Query");
-
         jScrollPane3.setViewportView(jTextPane_results);
 
-        jCheckBox_Ontologia3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jCheckBox_Ontologia3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jCheckBox_Ontologia3.setForeground(new java.awt.Color(255, 0, 0));
         jCheckBox_Ontologia3.setText("EDAM");
         jCheckBox_Ontologia3.addActionListener(new java.awt.event.ActionListener() {
@@ -218,7 +221,7 @@ public class Menu1 extends JFrame {
             }
         });
 
-        jCheckBox_Ontologia4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jCheckBox_Ontologia4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jCheckBox_Ontologia4.setForeground(new java.awt.Color(255, 0, 0));
         jCheckBox_Ontologia4.setText("GeXo");
         jCheckBox_Ontologia4.addActionListener(new java.awt.event.ActionListener() {
@@ -230,112 +233,80 @@ public class Menu1 extends JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ontology/ontlogo.jpg"))); // NOI18N
 
-        jTextField1.setName("queryField"); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Carica Ontologie");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton1MousePressed(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ontology/diemlogo.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(ReadME, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(362, 362, 362)
-                                    .addComponent(jButton_Save_as, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(campoCerca, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(Ontologia, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jCheckBox_Ontologia1)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jCheckBox_Ontologia2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jCheckBox_Ontologia3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jCheckBox_Ontologia4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(29, 29, 29)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(jButton_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(11, 11, 11)))))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel_query, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addComponent(ReadME, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(619, 619, 619)
+                        .addComponent(jButton_Save_as, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(campoCerca, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(73, 73, 73)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(Ontologia, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCheckBox_Ontologia1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCheckBox_Ontologia2)
+                            .addGap(8, 8, 8)
+                            .addComponent(jCheckBox_Ontologia3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jCheckBox_Ontologia4))))
+                .addGap(0, 30, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jCheckBox_Ontologia1, jCheckBox_Ontologia2, jCheckBox_Ontologia3, jCheckBox_Ontologia4});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoCerca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Ontologia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox_Ontologia1)
-                    .addComponent(jCheckBox_Ontologia2)
-                    .addComponent(jCheckBox_Ontologia3)
-                    .addComponent(jCheckBox_Ontologia4)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel_query)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ReadME)
-                    .addComponent(jButton_Save_as, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Ontologia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBox_Ontologia1)
+                            .addComponent(jCheckBox_Ontologia2)
+                            .addComponent(jCheckBox_Ontologia3)
+                            .addComponent(jCheckBox_Ontologia4))
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton_Save_as, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ReadME))
+                        .addContainerGap())))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jCheckBox_Ontologia1, jCheckBox_Ontologia2, jCheckBox_Ontologia3, jCheckBox_Ontologia4});
@@ -430,11 +401,10 @@ public class Menu1 extends JFrame {
             String query = "SELECT DISTINCT ?x  WHERE { ?x ?y ?z . FILTER (regex(?z,\"" + cerca + "\"))}";
             System.out.println(query);
             jTextPane_results.setText("");
-            jTextField1.setText(query);
             for (int i = 0; i < choosenOnto.length; i++) {
                 if (choosenOnto[i]) {
-                    jTextPane_results.setText(jTextPane_results.getText()+"-----------------\n"+ontologiesName.get(i)+"\n-----------------------");
-                    querying(ontologies.get(i));
+                    jTextPane_results.setText(jTextPane_results.getText() + "-----------------\n" + ontologiesName.get(i) + "\n-----------------------");
+                    querying(ontologies.get(i), i);
                 }
                 // fruit is an element of the `fruits` array.
             }
@@ -442,11 +412,57 @@ public class Menu1 extends JFrame {
 
     }//GEN-LAST:event_jButton_SearchMousePressed
 
+    public void querying(OntModel m_ont, int ontoNum) {
+        String search = campoCerca.getText();
+        String queryString = "SELECT DISTINCT ?x  WHERE { ?x ?y ?z . FILTER (regex(?z,\"" + search + "\",'i'))}";
+        Query query = QueryFactory.create(queryString, Syntax.syntaxARQ);
+        QueryExecution qexec = QueryExecutionFactory.create(query, m_ont);
+        System.out.println("\nresult\n");
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n");
+        Property label = null;
+        if (ontoNum == 2 || ontoNum == 4) {
+            label = m_ont.getProperty("http://www.w3.org/2004/02/skos/core#prefLabel");
+        } else if (ontoNum == 1 || ontoNum == 3) {
+            label = m_ont.getProperty("http://www.w3.org/2000/01/rdf-schema#label");
+        }
+        for (ResultSet results = qexec.execSelect(); results.hasNext();) {
+            QuerySolution soln = results.nextSolution();
+            RDFNode node = soln.get("?x");
+            Resource r = node.asResource();
+            for (StmtIterator lP = r.listProperties(); lP.hasNext();) {
+                Statement s = lP.nextStatement();
+                sb.append('\n');
+                System.out.print(s.getSubject().asResource().getRequiredProperty(label).getObject() + "\t");
+                if (s.getPredicate().isResource()) {
+                    if (s.getPredicate().asResource().hasProperty(label)) {
+                        System.out.print(s.getPredicate().asResource().getRequiredProperty(label).getObject().toString() + "\t");
+                    } else {
+                        System.out.print(s.getPredicate().getLocalName() + "\t");
+                    }
+                } else {
+                    System.out.print(s.getPredicate().toString() + "\t");
+                }
+                if (s.getObject().isResource()) {
+                    if (s.getObject().asResource().hasProperty(label)) {
+                        System.out.println(s.getObject().asResource().getRequiredProperty(label).getObject().toString() + "\t");
+                    } else {
+                        System.out.println(s.getObject().asResource().getLocalName() + "\t");
+                    }
+                } else {
+                    System.out.println(s.getObject().toString() + "\t");
+                }
+
+            }
+        }
+        jTextPane_results.setText(jTextPane_results.getText() + "\n-------------------------------------------------------------------------\n" + sb.toString());
+
+    }
+
     private void jButton_Save_asMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Save_asMousePressed
-        // TODO add your handling code here:
         if (jTextPane_results.getText() != "") {
             try {
-                scriviPDF("report.pdf", jTextPane_results.getText());
+                scriviPDF("report.txt", jTextPane_results.getText());
             } catch (IOException ex) {
                 Logger.getLogger(Menu1.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -457,15 +473,6 @@ public class Menu1 extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ReadMEActionPerformed
 
-    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
-        // TODO add your handling code here:
-        caricaOntologie();
-    }//GEN-LAST:event_jButton1MousePressed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton_Save_asActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Save_asActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_Save_asActionPerformed
@@ -474,101 +481,58 @@ public class Menu1 extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_SearchActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void caricaOntologie() {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o1.read("..//go.owl");
+        o1.read("..//go.owl");
         ontologies.add(o1);
         ontologiesName.add("GO ONTOLOGY");
-        jCheckBox_Ontologia1.setForeground(Color.GREEN);
+        jCheckBox_Ontologia1.setForeground(Color.blue);
         OntModel o2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
         o2.read("..//rexo.owl");
-        ontologies.add(o2);        
-        ontologiesName.add("REXO ONTOLOGY");  
+        ontologies.add(o2);
+        ontologiesName.add("REXO ONTOLOGY");
         prefLabel = o2.getProperty("http://www.w3.org/2004/02/skos/core#prefLabel");
-        jCheckBox_Ontologia2.setForeground(Color.GREEN);
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o3.read("..//EDAM.owl");
+        o3.read("..//EDAM.owl");
         ontologies.add(o3);
-        ontologiesName.add("EDAM ONTOLOGY"); 
-        jCheckBox_Ontologia3.setForeground(Color.GREEN);
+        ontologiesName.add("EDAM ONTOLOGY");
+        jCheckBox_Ontologia3.setForeground(Color.black);
         OntModel o4 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
         o4.read("..//gexo.owl");
         ontologies.add(o4);
-        ontologiesName.add("GEXO ONTOLOGY"); 
+        ontologiesName.add("GEXO ONTOLOGY");
         prefLabel = o4.getProperty("http://www.w3.org/2004/02/skos/core#prefLabel");
-        jCheckBox_Ontologia4.setForeground(Color.GREEN);
+        jCheckBox_Ontologia4.setForeground(Color.green);
         jButton_Search.setEnabled(true);
-        jButton1.setVisible(false);
 
     }
 
-    public void querying(OntModel m_ont) {
-        String search = campoCerca.getText();
-        String queryString = "SELECT DISTINCT ?x  WHERE { ?x ?y ?z . FILTER (regex(?z,\"" + search + "\",'i'))}";
-        Query query = QueryFactory.create(queryString, Syntax.syntaxARQ);
-        QueryExecution qexec = QueryExecutionFactory.create(query, m_ont);
-        System.out.println("\nresult\n");
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n");
+    public void scriviPDF(String path, String result) throws IOException {
+        result = result.replace("\n", "").replace("\r", "");
+        // Create a document and add a page to it
+        PDDocument document = new PDDocument();
+        PDPage page = new PDPage();
+        document.addPage(page);
 
-        /*old reseult onlyt id uri
-        ResultSet results = qexec.execSelect();
-        for ( ; results.hasNext() ; )
-        {
-          QuerySolution soln = results.nextSolution() ;
-          System.out.println(soln);
-          sb.append(soln +"\n"); //<br> tag to insert line breaks
-        } 
-         */
-        //new result with all the information(id object explosion)
-        for (ResultSet results = qexec.execSelect(); results.hasNext();) {
+        // Create a new font object selecting one of the PDF base fonts
+        PDFont font = PDType1Font.HELVETICA_BOLD;
 
-            QuerySolution soln = results.nextSolution();
-            RDFNode node = soln.get("?x");
-            Resource r = node.asResource();
-            for (StmtIterator lP = r.listProperties(); lP.hasNext();) {
-                Statement s = lP.nextStatement();
-                //System.out.println(i + " " + s.asTriple().toString());
-                sb.append(" ").append(s.getSubject().getRequiredProperty(prefLabel).getObject()).append("\t");
-                if (s.getObject().isLiteral() || s.getPredicate().getNameSpace().equals("http://www.w3.org/2000/01/rdf-schema#") || s.getPredicate().getNameSpace().equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#")) {
-                    sb.append(s.getPredicate().getLocalName()).append("\t");
-                    switch (s.getPredicate().getLocalName()) {
-                        case "type":
-                            sb.append(s.getObject().asResource().getLocalName());
-                            break;
-                        case "subClassOf":
-                            sb.append(s.getObject().asResource().getProperty(prefLabel).getObject());
-                            break;
-                        default:
-                            sb.append(s.getObject().toString());
-                            break;
-                    }
-                    sb.append("\n");
-                } else {
-                    sb.append(s.getPredicate().asResource().getProperty(prefLabel).getObject()).append("\t");
-                    sb.append(s.getObject().asResource().getProperty(prefLabel).getObject()).append("\n");
-                }
-            }
-            sb.append('\n');
-        }
+        // Start a new content stream which will "hold" the to be created content
+        PDPageContentStream contentStream = new PDPageContentStream(document, page);
 
-        jTextPane_results.setText(jTextPane_results.getText() + "\n-------------------------------------------------------------------------\n" + sb.toString());
+        // Define a text content stream using the selected font, moving the cursor and drawing the text "Hello World"
+        contentStream.beginText();
+        contentStream.setFont(font, 12);
+        contentStream.moveTextPositionByAmount(100, 700);
+        contentStream.drawString(result);
+        contentStream.endText();
 
-    }
+        // Make sure that the content stream is closed:
+        contentStream.close();
 
-    public void scriviPDF(String path, String txt) throws IOException {
-
-        Writer writer = null;
-        File file = new File(path);
-        writer = new BufferedWriter(new FileWriter(file));
-        writer.write(txt);
-        if (writer != null) {
-        }
-        writer.close();
+        // Save the results and ensure that the document is properly closed:
+        document.save(getCampoCerca() + ".pdf");
+        document.close();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -576,7 +540,6 @@ public class Menu1 extends JFrame {
     private javax.swing.JButton ReadME;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField campoCerca;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_Cerca;
     private javax.swing.JButton jButton_Save_as;
     private static javax.swing.JButton jButton_Search;
@@ -587,10 +550,9 @@ public class Menu1 extends JFrame {
     static javax.swing.JCheckBox jCheckBox_Ontologia4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel_query;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane_results;
     // End of variables declaration//GEN-END:variables
 }

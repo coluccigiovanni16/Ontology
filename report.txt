@@ -1,0 +1,788 @@
+-----------------
+REXO ONTOLOGY
+-----------------------
+-------------------------------------------------------------------------
+
+ Ebag9	relatedMatch	RGD:1307293
+ Ebag9	relatedMatch	Ensembl:ENSRNOG00000004220
+ Ebag9	definition	The protein-coding gene Ebag9 (estrogen receptor binding site associated, antigen, 9) located on the chromosome 7 mapped at 7q31.
+ Ebag9	id	NCBIGene:299864
+ Ebag9	inheres in	Rattus Norvegicus
+ Ebag9	encodes	RCAS1_RAT
+ Ebag9	subClassOf	gene
+ Ebag9	prefLabel	Ebag9
+ Ebag9	type	Class
+
+ BAG6_MOUSE	definition	Large proline-rich protein BAG6
+ BAG6_MOUSE	enables	protein binding
+ BAG6_MOUSE	part of	cytosol
+ BAG6_MOUSE	enables	ubiquitin protein ligase binding
+ BAG6_MOUSE	part of	nucleus
+ BAG6_MOUSE	is orthologous to	BAG6_RAT
+ BAG6_MOUSE	bearer of	N-acetyl-L-methionine
+ BAG6_MOUSE	part of	cytoplasm
+ BAG6_MOUSE	enables	proteasome binding
+ BAG6_MOUSE	type	Class
+ BAG6_MOUSE	enables	ribosome binding
+ BAG6_MOUSE	involved in	protein stabilization
+ BAG6_MOUSE	id	UniProt:Q9Z1R2
+ BAG6_MOUSE	enables	polyubiquitin binding
+ BAG6_MOUSE	altLabel	BAG6
+ BAG6_MOUSE	bearer of	O-phospho-L-serine
+ BAG6_MOUSE	altLabel	Protein Scythe
+ BAG6_MOUSE	part of	nucleoplasm
+ BAG6_MOUSE	prefLabel	BAG6_MOUSE
+ BAG6_MOUSE	altLabel	BAG family molecular chaperone regulator 6
+ BAG6_MOUSE	altLabel	BCL2-associated athanogene 6
+ BAG6_MOUSE	subClassOf	protein
+ BAG6_MOUSE	part of	BAT3 complex
+ BAG6_MOUSE	enables	Hsp70 protein binding
+ BAG6_MOUSE	inheres in	Mus musculus
+ BAG6_MOUSE	altLabel	HLA-B-associated transcript 3
+ BAG6_MOUSE	altLabel	BAG-6
+ BAG6_MOUSE	part of	intracellular membrane-bounded organelle
+
+ NEWGENE_1310847	altLabel	Bag5
+ NEWGENE_1310847	relatedMatch	RGD:9457021
+ NEWGENE_1310847	definition	The protein-coding gene NEWGENE_1310847 (BCL2-associated athanogene 5) located on the chromosome 6.
+ NEWGENE_1310847	id	NCBIGene:103690404
+ NEWGENE_1310847	inheres in	Rattus Norvegicus
+ NEWGENE_1310847	encodes	BAG5_RAT
+ NEWGENE_1310847	subClassOf	gene
+ NEWGENE_1310847	prefLabel	NEWGENE_1310847
+ NEWGENE_1310847	type	Class
+
+ Bag2	definition	The protein-coding gene Bag2 (BCL2-associated athanogene 2) located on the chromosome 1 mapped at 1 B|1.
+ Bag2	id	NCBIGene:213539
+ Bag2	encodes	BAG2_MOUSE
+ Bag2	altLabel	2610042A13Rik
+ Bag2	relatedMatch	Vega:OTTMUSG00000021814
+ Bag2	inheres in	Mus musculus
+ Bag2	relatedMatch	Ensembl:ENSMUSG00000042215
+ Bag2	altLabel	BC016230
+ Bag2	relatedMatch	MGI:MGI:1891254
+ Bag2	prefLabel	Bag2
+ Bag2	subClassOf	gene
+ Bag2	type	Class
+
+ Bag3	relatedMatch	RGD:1307794
+ Bag3	relatedMatch	Ensembl:ENSRNOG00000020298
+ Bag3	definition	The protein-coding gene Bag3 (Bcl2-associated athanogene 3) located on the chromosome 1 mapped at 1q36.
+ Bag3	id	NCBIGene:293524
+ Bag3	inheres in	Rattus Norvegicus
+ Bag3	encodes	Q5U2U8_RAT
+ Bag3	subClassOf	gene
+ Bag3	prefLabel	Bag3
+ Bag3	type	Class
+
+ BAG2_MOUSE	type	Class
+ BAG2_MOUSE	enables	identical protein binding
+ BAG2_MOUSE	inheres in	Mus musculus
+ BAG2_MOUSE	bearer of	O-phospho-L-serine
+ BAG2_MOUSE	altLabel	Bcl-2-associated athanogene 2
+ BAG2_MOUSE	subClassOf	protein
+ BAG2_MOUSE	prefLabel	BAG2_MOUSE
+ BAG2_MOUSE	altLabel	BAG-2
+ BAG2_MOUSE	id	UniProt:Q91YN9
+ BAG2_MOUSE	bearer of	N-acetyl-L-alanine
+ BAG2_MOUSE	part of	cellular_component
+ BAG2_MOUSE	enables	chaperone binding
+ BAG2_MOUSE	definition	BAG family molecular chaperone regulator 2
+
+ BAG4	encodes	BAG4_HUMAN
+ BAG4	subClassOf	gene
+ BAG4	definition	The protein-coding gene BAG4 (BCL2-associated athanogene 4) located on the chromosome 8 mapped at 8p11.23.
+ BAG4	type	Class
+ BAG4	relatedMatch	HGNC:HGNC:940
+ BAG4	relatedMatch	Ensembl:ENSG00000156735
+ BAG4	relatedMatch	MIM:603884
+ BAG4	altLabel	BAG-4
+ BAG4	altLabel	SODD
+ BAG4	id	NCBIGene:9530
+ BAG4	relatedMatch	HPRD:04861
+ BAG4	relatedMatch	Vega:OTTHUMG00000164064
+ BAG4	inheres in	Homo sapiens
+ BAG4	prefLabel	BAG4
+
+ BAG3	relatedMatch	Ensembl:ENSG00000151929
+ BAG3	subClassOf	gene
+ BAG3	altLabel	BIS
+ BAG3	definition	The protein-coding gene BAG3 (BCL2-associated athanogene 3) located on the chromosome 10 mapped at 10q25.2-q26.2.
+ BAG3	encodes	BAG3_HUMAN
+ BAG3	type	Class
+ BAG3	relatedMatch	HPRD:04860
+ BAG3	relatedMatch	HGNC:HGNC:939
+ BAG3	relatedMatch	MIM:603883
+ BAG3	altLabel	CAIR-1
+ BAG3	altLabel	MFM6
+ BAG3	inheres in	Homo sapiens
+ BAG3	altLabel	BAG-3
+ BAG3	id	NCBIGene:9531
+ BAG3	prefLabel	BAG3
+ BAG3	relatedMatch	Vega:OTTHUMG00000019155
+
+ BAG2	encodes	BAG2_HUMAN
+ BAG2	prefLabel	BAG2
+ BAG2	altLabel	BAG-2
+ BAG2	type	Class
+ BAG2	subClassOf	gene
+ BAG2	relatedMatch	HPRD:04859
+ BAG2	relatedMatch	HGNC:HGNC:938
+ BAG2	definition	The protein-coding gene BAG2 (BCL2-associated athanogene 2) located on the chromosome 6 mapped at 6p12.1-p11.2.
+ BAG2	id	NCBIGene:9532
+ BAG2	relatedMatch	MIM:603882
+ BAG2	altLabel	dJ417I1.2
+ BAG2	inheres in	Homo sapiens
+
+ Bag3	altLabel	mg638
+ Bag3	relatedMatch	Ensembl:ENSMUSG00000030847
+ Bag3	altLabel	AA407278
+ Bag3	relatedMatch	MGI:MGI:1352493
+ Bag3	prefLabel	Bag3
+ Bag3	inheres in	Mus musculus
+ Bag3	encodes	BAG3_MOUSE
+ Bag3	subClassOf	gene
+ Bag3	definition	The protein-coding gene Bag3 (BCL2-associated athanogene 3) located on the chromosome 7 mapped at 7 F3|7.
+ Bag3	altLabel	Bis
+ Bag3	id	NCBIGene:29810
+ Bag3	type	Class
+
+ Bag6	encodes	BAG6_MOUSE
+ Bag6	altLabel	Scythe
+ Bag6	altLabel	AA408914
+ Bag6	inheres in	Mus musculus
+ Bag6	subClassOf	gene
+ Bag6	altLabel	G3
+ Bag6	id	NCBIGene:224727
+ Bag6	definition	The protein-coding gene Bag6 (BCL2-associated athanogene 6) located on the chromosome 17 mapped at 17 B1|17 18.59 cM.
+ Bag6	prefLabel	Bag6
+ Bag6	altLabel	D17H6S52E
+ Bag6	altLabel	Bat3
+ Bag6	relatedMatch	Ensembl:ENSMUSG00000024392
+ Bag6	altLabel	BAG-6
+ Bag6	altLabel	2410045D21Rik
+ Bag6	relatedMatch	Vega:OTTMUSG00000037183
+ Bag6	type	Class
+ Bag6	relatedMatch	MGI:MGI:1919439
+
+ Bag1	relatedMatch	MGI:MGI:108047
+ Bag1	subClassOf	gene
+ Bag1	id	NCBIGene:12017
+ Bag1	definition	The protein-coding gene Bag1 (BCL2-associated athanogene 1) located on the chromosome 4 mapped at 4|4 B1.
+ Bag1	type	Class
+ Bag1	altLabel	BAG-1
+ Bag1	relatedMatch	Ensembl:ENSMUSG00000028416
+ Bag1	inheres in	Mus musculus
+ Bag1	relatedMatch	Vega:OTTMUSG00000006605
+ Bag1	prefLabel	Bag1
+ Bag1	altLabel	Rap46
+ Bag1	encodes	BAG1_MOUSE
+
+ Ebag9	relatedMatch	Ensembl:ENSMUSG00000022339
+ Ebag9	subClassOf	gene
+ Ebag9	inheres in	Mus musculus
+ Ebag9	relatedMatch	MGI:MGI:1859920
+ Ebag9	definition	The protein-coding gene Ebag9 (estrogen receptor-binding fragment-associated gene 9) located on the chromosome 15 mapped at 15|15 D1.
+ Ebag9	id	NCBIGene:55960
+ Ebag9	type	Class
+ Ebag9	encodes	RCAS1_MOUSE
+ Ebag9	altLabel	AI835379
+ Ebag9	altLabel	Rcas1
+ Ebag9	prefLabel	Ebag9
+
+ NKX32_MOUSE	altLabel	Homeobox protein NK-3 homolog B
+ NKX32_MOUSE	enables	sequence-specific DNA binding
+ NKX32_MOUSE	enables	RNA polymerase II core promoter proximal region sequence-specific DNA binding
+ NKX32_MOUSE	subClassOf	protein
+ NKX32_MOUSE	id	UniProt:P97503
+ NKX32_MOUSE	type	Class
+ NKX32_MOUSE	is orthologous to	NKX32_HUMAN
+ NKX32_MOUSE	involved in	negative regulation of transcription from RNA polymerase II promoter
+ NKX32_MOUSE	prefLabel	NKX32_MOUSE
+ NKX32_MOUSE	involved in	regulation of transcription, DNA-templated
+ NKX32_MOUSE	part of	nucleus
+ NKX32_MOUSE	enables	RNA polymerase II core promoter proximal region sequence-specific DNA binding transcription factor activity involved in negative regulation of transcription
+ NKX32_MOUSE	altLabel	Bagpipe homeobox protein homolog 1
+ NKX32_MOUSE	definition	Homeobox protein Nkx-3.2
+ NKX32_MOUSE	is orthologous to	M0R5Y2_RAT
+ NKX32_MOUSE	enables	DNA binding
+ NKX32_MOUSE	inheres in	Mus musculus
+
+ BAG4_HUMAN	part of	plasma membrane
+ BAG4_HUMAN	part of	cytoplasm
+ BAG4_HUMAN	prefLabel	BAG4_HUMAN
+ BAG4_HUMAN	enables	poly(A) RNA binding
+ BAG4_HUMAN	inheres in	Homo sapiens
+ BAG4_HUMAN	enables	chaperone binding
+ BAG4_HUMAN	subClassOf	protein
+ BAG4_HUMAN	enables	protein binding
+ BAG4_HUMAN	definition	BAG family molecular chaperone regulator 4
+ BAG4_HUMAN	altLabel	BAG-4
+ BAG4_HUMAN	altLabel	Bcl-2-associated athanogene 4
+ BAG4_HUMAN	enables	receptor signaling protein activity
+ BAG4_HUMAN	type	Class
+ BAG4_HUMAN	part of	nucleus
+ BAG4_HUMAN	id	UniProt:O95429
+ BAG4_HUMAN	part of	cytosol
+ BAG4_HUMAN	altLabel	Silencer of death domains
+
+ preQ1 synthase activity	prefLabel	preQ1 synthase activity
+ preQ1 synthase activity	altLabel	7-cyano-7-deazaguanine reductase activity
+ preQ1 synthase activity	id	GO:0033739
+ preQ1 synthase activity	type	Class
+ preQ1 synthase activity	altLabel	preQ0 oxidoreductase activity
+ preQ1 synthase activity	relatedMatch	RHEA:13412
+ preQ1 synthase activity	subClassOf	oxidoreductase activity, acting on NAD(P)H, nitrogenous group as acceptor
+ preQ1 synthase activity	altLabel	preQ0 reductase activity
+ preQ1 synthase activity	definition	Catalysis of the reaction -  7-aminomethyl-7-deazaguanine + 2 NADP(+) -eq- 7-cyano-7-deazaguanine + 3 H(+) + 2 NADPH.
+ preQ1 synthase activity	relatedMatch	MetaCyc:RXN0-4022
+ preQ1 synthase activity	altLabel	7-aminomethyl-7-carbaguanine - NADP+ oxidoreductase activity
+ preQ1 synthase activity	relatedMatch	KEGG:R07605
+ preQ1 synthase activity	relatedMatch	EC:1.7.1.13
+ preQ1 synthase activity	hasOBONamespace	molecular_function
+ preQ1 synthase activity	subClassOf	oxidoreductase activity, acting on the CH-NH group of donors, NAD or NADP as acceptor
+
+ BAG5_RAT	part of	mitochondrion
+ BAG5_RAT	altLabel	Bcl-2-associated athanogene 5
+ BAG5_RAT	enables	protein kinase binding
+ BAG5_RAT	part of	perinuclear region of cytoplasm
+ BAG5_RAT	enables	ubiquitin protein ligase binding
+ BAG5_RAT	type	Class
+ BAG5_RAT	part of	nucleus
+ BAG5_RAT	id	UniProt:Q5QJC9
+ BAG5_RAT	definition	BAG family molecular chaperone regulator 5
+ BAG5_RAT	altLabel	BAG-5
+ BAG5_RAT	subClassOf	protein
+ BAG5_RAT	enables	chaperone binding
+ BAG5_RAT	part of	membrane
+ BAG5_RAT	part of	inclusion body
+ BAG5_RAT	prefLabel	BAG5_RAT
+ BAG5_RAT	inheres in	Rattus Norvegicus
+
+ F6VEM6_HUMAN	definition	Large proline-rich protein BAG6
+ F6VEM6_HUMAN	id	UniProt:F6VEM6
+ F6VEM6_HUMAN	inheres in	Homo sapiens
+ F6VEM6_HUMAN	subClassOf	protein
+ F6VEM6_HUMAN	prefLabel	F6VEM6_HUMAN
+ F6VEM6_HUMAN	type	Class
+
+ Bag6	type	Class
+ Bag6	altLabel	Bat3
+ Bag6	relatedMatch	RGD:71064
+ Bag6	id	NCBIGene:94342
+ Bag6	encodes	BAG6_RAT
+ Bag6	inheres in	Rattus Norvegicus
+ Bag6	subClassOf	gene
+ Bag6	definition	The protein-coding gene Bag6 (BCL2-associated athanogene 6) located on the chromosome 20 mapped at 20p12.
+ Bag6	relatedMatch	Ensembl:ENSRNOG00000000851
+ Bag6	prefLabel	Bag6
+
+ F1LRM5_RAT	id	UniProt:F1LRM5
+ F1LRM5_RAT	is orthologous to	F6TCF9_MOUSE
+ F1LRM5_RAT	definition	BAG family molecular chaperone regulator 1
+ F1LRM5_RAT	type	Class
+ F1LRM5_RAT	subClassOf	protein
+ F1LRM5_RAT	is orthologous to	BAG1_MOUSE
+ F1LRM5_RAT	inheres in	Rattus Norvegicus
+ F1LRM5_RAT	prefLabel	F1LRM5_RAT
+ F1LRM5_RAT	is orthologous to	BAG1_HUMAN
+ F1LRM5_RAT	is orthologous to	J3QTA2_HUMAN
+
+ LRRC4_MOUSE	part of	plasma membrane
+ LRRC4_MOUSE	part of	neuron spine
+ LRRC4_MOUSE	part of	excitatory synapse
+ LRRC4_MOUSE	definition	Leucine-rich repeat-containing protein 4
+ LRRC4_MOUSE	is orthologous to	LRC4B_HUMAN
+ LRRC4_MOUSE	is orthologous to	D3ZXT1_RAT
+ LRRC4_MOUSE	is orthologous to	LRC4C_HUMAN
+ LRRC4_MOUSE	altLabel	NGL-2
+ LRRC4_MOUSE	type	Class
+ LRRC4_MOUSE	part of	membrane
+ LRRC4_MOUSE	part of	cell junction
+ LRRC4_MOUSE	subClassOf	protein
+ LRRC4_MOUSE	part of	integral component of membrane
+ LRRC4_MOUSE	part of	dendritic spine
+ LRRC4_MOUSE	enables	protein binding
+ LRRC4_MOUSE	is orthologous to	LRRC4_HUMAN
+ LRRC4_MOUSE	prefLabel	LRRC4_MOUSE
+ LRRC4_MOUSE	altLabel	Brain tumor-associated protein MBAG1
+ LRRC4_MOUSE	id	UniProt:Q99PH1
+ LRRC4_MOUSE	inheres in	Mus musculus
+ LRRC4_MOUSE	altLabel	Netrin-G2 ligand
+ LRRC4_MOUSE	part of	postsynaptic membrane
+ LRRC4_MOUSE	part of	synapse
+ LRRC4_MOUSE	is orthologous to	LRRC4_RAT
+ LRRC4_MOUSE	is orthologous to	LRC4B_RAT
+
+ BAG5_HUMAN	enables	chaperone binding
+ BAG5_HUMAN	altLabel	BAG-5
+ BAG5_HUMAN	id	UniProt:Q9UL15
+ BAG5_HUMAN	part of	perinuclear region of cytoplasm
+ BAG5_HUMAN	definition	BAG family molecular chaperone regulator 5
+ BAG5_HUMAN	part of	membrane
+ BAG5_HUMAN	enables	protein binding
+ BAG5_HUMAN	altLabel	Bcl-2-associated athanogene 5
+ BAG5_HUMAN	part of	mitochondrion
+ BAG5_HUMAN	part of	nucleus
+ BAG5_HUMAN	enables	ubiquitin protein ligase binding
+ BAG5_HUMAN	part of	inclusion body
+ BAG5_HUMAN	enables	protein kinase binding
+ BAG5_HUMAN	type	Class
+ BAG5_HUMAN	inheres in	Homo sapiens
+ BAG5_HUMAN	prefLabel	BAG5_HUMAN
+ BAG5_HUMAN	subClassOf	protein
+
+ Lrrc4	prefLabel	Lrrc4
+ Lrrc4	id	NCBIGene:192198
+ Lrrc4	encodes	LRRC4_MOUSE
+ Lrrc4	relatedMatch	Vega:OTTMUSG00000023270
+ Lrrc4	inheres in	Mus musculus
+ Lrrc4	relatedMatch	MGI:MGI:2182081
+ Lrrc4	subClassOf	gene
+ Lrrc4	definition	The protein-coding gene Lrrc4 (leucine rich repeat containing 4) located on the chromosome 6 mapped at 6 A3.3|6.
+ Lrrc4	altLabel	NLG-2
+ Lrrc4	relatedMatch	Ensembl:ENSMUSG00000049939
+ Lrrc4	altLabel	MBAG1
+ Lrrc4	altLabel	NGL-2
+ Lrrc4	altLabel	Nag14
+ Lrrc4	type	Class
+
+ BAG1_HUMAN	is orthologous to	F1LRM5_RAT
+ BAG1_HUMAN	inheres in	Homo sapiens
+ BAG1_HUMAN	enables	chaperone binding
+ BAG1_HUMAN	part of	cytoplasm
+ BAG1_HUMAN	is orthologous to	BAG1_MOUSE
+ BAG1_HUMAN	part of	nucleus
+ BAG1_HUMAN	id	UniProt:Q99933
+ BAG1_HUMAN	bearer of	O-phospho-L-serine
+ BAG1_HUMAN	subClassOf	protein
+ BAG1_HUMAN	is orthologous to	BAG1_RAT
+ BAG1_HUMAN	enables	receptor signaling protein activity
+ BAG1_HUMAN	altLabel	BAG-1
+ BAG1_HUMAN	definition	BAG family molecular chaperone regulator 1
+ BAG1_HUMAN	altLabel	Bcl-2-associated athanogene 1
+ BAG1_HUMAN	enables	protein binding
+ BAG1_HUMAN	prefLabel	BAG1_HUMAN
+ BAG1_HUMAN	is orthologous to	F6TCF9_MOUSE
+ BAG1_HUMAN	type	Class
+
+ NKX32_HUMAN	definition	Homeobox protein Nkx-3.2
+ NKX32_HUMAN	enables	RNA polymerase II core promoter proximal region sequence-specific DNA binding
+ NKX32_HUMAN	involved in	negative regulation of transcription from RNA polymerase II promoter
+ NKX32_HUMAN	inheres in	Homo sapiens
+ NKX32_HUMAN	is orthologous to	NKX32_MOUSE
+ NKX32_HUMAN	prefLabel	NKX32_HUMAN
+ NKX32_HUMAN	subClassOf	protein
+ NKX32_HUMAN	involved in	Spondylo-megaepiphyseal-metaphyseal dysplasia
+ NKX32_HUMAN	enables	sequence-specific DNA binding
+ NKX32_HUMAN	enables	DNA binding
+ NKX32_HUMAN	altLabel	Bagpipe homeobox protein homolog 1
+ NKX32_HUMAN	involved in	regulation of transcription, DNA-templated
+ NKX32_HUMAN	id	UniProt:P78367
+ NKX32_HUMAN	part of	nucleus
+ NKX32_HUMAN	enables	RNA polymerase II core promoter proximal region sequence-specific DNA binding transcription factor activity involved in negative regulation of transcription
+ NKX32_HUMAN	is orthologous to	M0R5Y2_RAT
+ NKX32_HUMAN	altLabel	Homeobox protein NK-3 homolog B
+ NKX32_HUMAN	type	Class
+
+ Bag5	altLabel	4930405J06Rik
+ Bag5	inheres in	Mus musculus
+ Bag5	type	Class
+ Bag5	altLabel	1600025G07Rik
+ Bag5	id	NCBIGene:70369
+ Bag5	prefLabel	Bag5
+ Bag5	encodes	BAG5_MOUSE
+ Bag5	definition	The protein-coding gene Bag5 (BCL2-associated athanogene 5) located on the chromosome 12 mapped at 12 F2|12.
+ Bag5	relatedMatch	MGI:MGI:1917619
+ Bag5	relatedMatch	Vega:OTTMUSG00000028789
+ Bag5	subClassOf	gene
+ Bag5	relatedMatch	Ensembl:ENSMUSG00000049792
+
+ BAG2_HUMAN	definition	BAG family molecular chaperone regulator 2
+ BAG2_HUMAN	enables	chaperone binding
+ BAG2_HUMAN	inheres in	Homo sapiens
+ BAG2_HUMAN	enables	identical protein binding
+ BAG2_HUMAN	altLabel	BAG-2
+ BAG2_HUMAN	id	UniProt:O95816
+ BAG2_HUMAN	altLabel	Bcl-2-associated athanogene 2
+ BAG2_HUMAN	subClassOf	protein
+ BAG2_HUMAN	type	Class
+ BAG2_HUMAN	enables	protein binding
+ BAG2_HUMAN	bearer of	N-acetyl-L-alanine
+ BAG2_HUMAN	bearer of	O-phospho-L-serine
+ BAG2_HUMAN	prefLabel	BAG2_HUMAN
+
+ BAG3_HUMAN	altLabel	Bcl-2-binding protein Bis
+ BAG3_HUMAN	bearer of	O-phospho-L-serine
+ BAG3_HUMAN	altLabel	Bcl-2-associated athanogene 3
+ BAG3_HUMAN	bearer of	N-acetyl-L-serine
+ BAG3_HUMAN	altLabel	Docking protein CAIR-1
+ BAG3_HUMAN	part of	Z disc
+ BAG3_HUMAN	inheres in	Homo sapiens
+ BAG3_HUMAN	type	Class
+ BAG3_HUMAN	enables	chaperone binding
+ BAG3_HUMAN	part of	neuron projection
+ BAG3_HUMAN	enables	protein complex binding
+ BAG3_HUMAN	is orthologous to	BAG3_MOUSE
+ BAG3_HUMAN	altLabel	BAG-3
+ BAG3_HUMAN	part of	cytoplasm
+ BAG3_HUMAN	involved in	Cardiomyopathy, dilated 1HH
+ BAG3_HUMAN	part of	plasma membrane
+ BAG3_HUMAN	id	UniProt:O95817
+ BAG3_HUMAN	subClassOf	protein
+ BAG3_HUMAN	bearer of	O-phospho-L-threonine
+ BAG3_HUMAN	part of	cytosol
+ BAG3_HUMAN	involved in	Myopathy, myofibrillar, 6
+ BAG3_HUMAN	definition	BAG family molecular chaperone regulator 3
+ BAG3_HUMAN	prefLabel	BAG3_HUMAN
+ BAG3_HUMAN	enables	protein binding
+ BAG3_HUMAN	is orthologous to	Q5U2U8_RAT
+ BAG3_HUMAN	involved in	protein stabilization
+
+ BAG6_HUMAN	enables	Hsp70 protein binding
+ BAG6_HUMAN	part of	cytosol
+ BAG6_HUMAN	type	Class
+ BAG6_HUMAN	altLabel	BAG6
+ BAG6_HUMAN	enables	protein binding
+ BAG6_HUMAN	id	UniProt:P46379
+ BAG6_HUMAN	altLabel	Protein Scythe
+ BAG6_HUMAN	enables	ribosome binding
+ BAG6_HUMAN	part of	nucleoplasm
+ BAG6_HUMAN	enables	ubiquitin protein ligase binding
+ BAG6_HUMAN	altLabel	BCL2-associated athanogene 6
+ BAG6_HUMAN	bearer of	N-acetyl-L-methionine
+ BAG6_HUMAN	prefLabel	BAG6_HUMAN
+ BAG6_HUMAN	altLabel	HLA-B-associated transcript 3
+ BAG6_HUMAN	part of	intracellular membrane-bounded organelle
+ BAG6_HUMAN	part of	BAT3 complex
+ BAG6_HUMAN	bearer of	O-phospho-L-threonine
+ BAG6_HUMAN	involved in	protein stabilization
+ BAG6_HUMAN	part of	cytoplasm
+ BAG6_HUMAN	inheres in	Homo sapiens
+ BAG6_HUMAN	bearer of	O-phospho-L-serine
+ BAG6_HUMAN	altLabel	Protein G3
+ BAG6_HUMAN	altLabel	BAG-6
+ BAG6_HUMAN	altLabel	BAG family molecular chaperone regulator 6
+ BAG6_HUMAN	definition	Large proline-rich protein BAG6
+ BAG6_HUMAN	part of	nucleus
+ BAG6_HUMAN	enables	proteasome binding
+ BAG6_HUMAN	subClassOf	protein
+ BAG6_HUMAN	enables	polyubiquitin binding
+
+ F6TCF9_MOUSE	definition	BAG family molecular chaperone regulator 1
+ F6TCF9_MOUSE	id	UniProt:F6TCF9
+ F6TCF9_MOUSE	is paralogous to	BAG1_MOUSE
+ F6TCF9_MOUSE	inheres in	Mus musculus
+ F6TCF9_MOUSE	subClassOf	protein
+ F6TCF9_MOUSE	prefLabel	F6TCF9_MOUSE
+ F6TCF9_MOUSE	type	Class
+
+ BAG1_MOUSE	definition	BAG family molecular chaperone regulator 1
+ BAG1_MOUSE	part of	nucleus
+ BAG1_MOUSE	is orthologous to	F1LRM5_RAT
+ BAG1_MOUSE	id	UniProt:Q60739
+ BAG1_MOUSE	part of	cytoplasm
+ BAG1_MOUSE	enables	phosphoprotein binding
+ BAG1_MOUSE	involved in	positive regulation of transcription from RNA polymerase II promoter
+ BAG1_MOUSE	is orthologous to	BAG1_HUMAN
+ BAG1_MOUSE	altLabel	BAG-1
+ BAG1_MOUSE	altLabel	Bcl-2-associated athanogene 1
+ BAG1_MOUSE	is orthologous to	J3QTA2_HUMAN
+ BAG1_MOUSE	inheres in	Mus musculus
+ BAG1_MOUSE	is paralogous to	F6TCF9_MOUSE
+ BAG1_MOUSE	prefLabel	BAG1_MOUSE
+ BAG1_MOUSE	subClassOf	protein
+ BAG1_MOUSE	enables	protein binding
+ BAG1_MOUSE	is orthologous to	BAG1_RAT
+ BAG1_MOUSE	type	Class
+ BAG1_MOUSE	enables	chaperone binding
+ BAG1_MOUSE	part of	cytosol
+
+ Bag1	definition	The protein-coding gene Bag1 (BCL2-associated athanogene) located on the chromosome 5 mapped at 5q22.
+ Bag1	prefLabel	Bag1
+ Bag1	id	NCBIGene:297994
+ Bag1	encodes	BAG1_RAT
+ Bag1	relatedMatch	RGD:1305203
+ Bag1	inheres in	Rattus Norvegicus
+ Bag1	subClassOf	gene
+ Bag1	relatedMatch	Ensembl:ENSRNOG00000008277
+ Bag1	altLabel	Bag-1
+ Bag1	type	Class
+
+ LRRC4_HUMAN	part of	integral component of membrane
+ LRRC4_HUMAN	is orthologous to	LRC4B_RAT
+ LRRC4_HUMAN	is orthologous to	LRC4C_MOUSE
+ LRRC4_HUMAN	type	Class
+ LRRC4_HUMAN	altLabel	Netrin-G2 ligand
+ LRRC4_HUMAN	inheres in	Homo sapiens
+ LRRC4_HUMAN	part of	cell junction
+ LRRC4_HUMAN	part of	plasma membrane
+ LRRC4_HUMAN	altLabel	Nasopharyngeal carcinoma-associated gene 14 protein
+ LRRC4_HUMAN	is orthologous to	LRRC4_MOUSE
+ LRRC4_HUMAN	part of	membrane
+ LRRC4_HUMAN	is orthologous to	D3ZXT1_RAT
+ LRRC4_HUMAN	definition	Leucine-rich repeat-containing protein 4
+ LRRC4_HUMAN	is orthologous to	LRC4B_MOUSE
+ LRRC4_HUMAN	subClassOf	protein
+ LRRC4_HUMAN	part of	excitatory synapse
+ LRRC4_HUMAN	enables	protein binding
+ LRRC4_HUMAN	is orthologous to	LRRC4_RAT
+ LRRC4_HUMAN	part of	postsynaptic membrane
+ LRRC4_HUMAN	id	UniProt:Q9HBW1
+ LRRC4_HUMAN	part of	synapse
+ LRRC4_HUMAN	prefLabel	LRRC4_HUMAN
+ LRRC4_HUMAN	altLabel	NGL-2
+ LRRC4_HUMAN	part of	neuron spine
+ LRRC4_HUMAN	altLabel	Brain tumor-associated protein BAG
+ LRRC4_HUMAN	part of	dendritic spine
+
+ EBAG9	subClassOf	gene
+ EBAG9	id	NCBIGene:9166
+ EBAG9	altLabel	PDAF
+ EBAG9	prefLabel	EBAG9
+ EBAG9	definition	The protein-coding gene EBAG9 (estrogen receptor binding site associated, antigen, 9) located on the chromosome 8 mapped at 8q23.
+ EBAG9	altLabel	EB9
+ EBAG9	relatedMatch	Vega:OTTHUMG00000165346
+ EBAG9	relatedMatch	HGNC:HGNC:3123
+ EBAG9	relatedMatch	HPRD:05775
+ EBAG9	relatedMatch	Ensembl:ENSG00000147654
+ EBAG9	encodes	RCAS1_HUMAN
+ EBAG9	inheres in	Homo sapiens
+ EBAG9	relatedMatch	MIM:605772
+ EBAG9	type	Class
+
+ BAG6	id	NCBIGene:7917
+ BAG6	altLabel	G3
+ BAG6	altLabel	BAG-6
+ BAG6	relatedMatch	HPRD:00808
+ BAG6	definition	The protein-coding gene BAG6 (BCL2-associated athanogene 6) located on the chromosome 6 mapped at 6p21.3.
+ BAG6	altLabel	BAT3
+ BAG6	relatedMatch	MIM:142590
+ BAG6	relatedMatch	HGNC:HGNC:13919
+ BAG6	type	Class
+ BAG6	inheres in	Homo sapiens
+ BAG6	relatedMatch	Vega:OTTHUMG00000031171
+ BAG6	relatedMatch	Ensembl:ENSG00000204463
+ BAG6	encodes	BAG6_HUMAN
+ BAG6	altLabel	D6S52E
+ BAG6	prefLabel	BAG6
+ BAG6	subClassOf	gene
+
+ BAG3_MOUSE	part of	cytosol
+ BAG3_MOUSE	inheres in	Mus musculus
+ BAG3_MOUSE	is orthologous to	BAG3_HUMAN
+ BAG3_MOUSE	part of	Z disc
+ BAG3_MOUSE	part of	cytoplasm
+ BAG3_MOUSE	enables	chaperone binding
+ BAG3_MOUSE	type	Class
+ BAG3_MOUSE	altLabel	Bcl-2-binding protein Bis
+ BAG3_MOUSE	altLabel	BAG-3
+ BAG3_MOUSE	definition	BAG family molecular chaperone regulator 3
+ BAG3_MOUSE	part of	plasma membrane
+ BAG3_MOUSE	subClassOf	protein
+ BAG3_MOUSE	bearer of	O-phospho-L-threonine
+ BAG3_MOUSE	part of	neuron projection
+ BAG3_MOUSE	enables	protein complex binding
+ BAG3_MOUSE	altLabel	Bcl-2-associated athanogene 3
+ BAG3_MOUSE	involved in	protein stabilization
+ BAG3_MOUSE	enables	protein binding
+ BAG3_MOUSE	id	UniProt:Q9JLV1
+ BAG3_MOUSE	bearer of	O-phospho-L-serine
+ BAG3_MOUSE	prefLabel	BAG3_MOUSE
+ BAG3_MOUSE	is orthologous to	Q5U2U8_RAT
+ BAG3_MOUSE	bearer of	N-acetyl-L-serine
+
+ BAG6_RAT	enables	polyubiquitin binding
+ BAG6_RAT	prefLabel	BAG6_RAT
+ BAG6_RAT	bearer of	N-acetyl-L-methionine
+ BAG6_RAT	involved in	protein stabilization
+ BAG6_RAT	enables	Hsp70 protein binding
+ BAG6_RAT	altLabel	BCL2-associated athanogene 6
+ BAG6_RAT	part of	nucleus
+ BAG6_RAT	part of	BAT3 complex
+ BAG6_RAT	inheres in	Rattus Norvegicus
+ BAG6_RAT	bearer of	O-phospho-L-serine
+ BAG6_RAT	altLabel	HLA-B-associated transcript 3
+ BAG6_RAT	part of	cytoplasm
+ BAG6_RAT	is orthologous to	BAG6_MOUSE
+ BAG6_RAT	enables	proteasome binding
+ BAG6_RAT	definition	Large proline-rich protein BAG6
+ BAG6_RAT	type	Class
+ BAG6_RAT	subClassOf	protein
+ BAG6_RAT	id	UniProt:Q6MG49
+ BAG6_RAT	part of	cytosol
+ BAG6_RAT	enables	ribosome binding
+ BAG6_RAT	enables	ubiquitin protein ligase binding
+
+ Q5U2U8_RAT	is orthologous to	BAG3_HUMAN
+ Q5U2U8_RAT	definition	Bcl2-associated athanogene 3
+ Q5U2U8_RAT	part of	cytosol
+ Q5U2U8_RAT	prefLabel	Q5U2U8_RAT
+ Q5U2U8_RAT	part of	plasma membrane
+ Q5U2U8_RAT	id	UniProt:Q5U2U8
+ Q5U2U8_RAT	involved in	protein stabilization
+ Q5U2U8_RAT	part of	neuron projection
+ Q5U2U8_RAT	altLabel	Protein Bag3
+ Q5U2U8_RAT	altLabel	RCG40209, isoform CRA_b
+ Q5U2U8_RAT	part of	Z disc
+ Q5U2U8_RAT	inheres in	Rattus Norvegicus
+ Q5U2U8_RAT	enables	chaperone binding
+ Q5U2U8_RAT	subClassOf	protein
+ Q5U2U8_RAT	enables	protein complex binding
+ Q5U2U8_RAT	is orthologous to	BAG3_MOUSE
+ Q5U2U8_RAT	type	Class
+ Q5U2U8_RAT	part of	cytoplasm
+
+ J3QTA2_HUMAN	id	UniProt:J3QTA2
+ J3QTA2_HUMAN	is orthologous to	BAG1_MOUSE
+ J3QTA2_HUMAN	is orthologous to	F1LRM5_RAT
+ J3QTA2_HUMAN	type	Class
+ J3QTA2_HUMAN	is orthologous to	F6TCF9_MOUSE
+ J3QTA2_HUMAN	is orthologous to	BAG1_RAT
+ J3QTA2_HUMAN	definition	BAG family molecular chaperone regulator 1
+ J3QTA2_HUMAN	inheres in	Homo sapiens
+ J3QTA2_HUMAN	prefLabel	J3QTA2_HUMAN
+ J3QTA2_HUMAN	subClassOf	protein
+
+ indole-3-butyrate beta-glucosyltransferase activity	altLabel	indole-3-butyric acid glucosyltransferase activity
+ indole-3-butyrate beta-glucosyltransferase activity	altLabel	UDPG-indol-3-ylbutyryl glucosyl transferase activity
+ indole-3-butyrate beta-glucosyltransferase activity	altLabel	UDP-glucose - (indol-3-yl)butyrate beta-D-glucosyltransferase activity
+ indole-3-butyrate beta-glucosyltransferase activity	type	Class
+ indole-3-butyrate beta-glucosyltransferase activity	altLabel	indol-3-ylbutyrylglucose synthase activity
+ indole-3-butyrate beta-glucosyltransferase activity	definition	Catalysis of the reaction -  indole-3-butyrate + UDP-D-glucose -eq- indole-3-butyryl-beta-1-D-glucose + UDP.
+ indole-3-butyrate beta-glucosyltransferase activity	relatedMatch	MetaCyc:RXN-11655
+ indole-3-butyrate beta-glucosyltransferase activity	altLabel	IBA-glucose synthase activity
+ indole-3-butyrate beta-glucosyltransferase activity	altLabel	IBAGlu synthase activity
+ indole-3-butyrate beta-glucosyltransferase activity	relatedMatch	EC:2.4.1.-
+ indole-3-butyrate beta-glucosyltransferase activity	altLabel	UDPglucose - indole-3-butyrate beta-D-glucosyltransferase activity
+ indole-3-butyrate beta-glucosyltransferase activity	hasOBONamespace	molecular_function
+ indole-3-butyrate beta-glucosyltransferase activity	altLabel	UDP-glucose - indol-3-ylbutyrate glucosyl-transferase activity
+ indole-3-butyrate beta-glucosyltransferase activity	altLabel	uridine diphosphoglucose-indolebutyrate glucosyltransferase activity
+ indole-3-butyrate beta-glucosyltransferase activity	altLabel	IBA-Glc synthetase activity
+ indole-3-butyrate beta-glucosyltransferase activity	id	GO:0052638
+ indole-3-butyrate beta-glucosyltransferase activity	prefLabel	indole-3-butyrate beta-glucosyltransferase activity
+ indole-3-butyrate beta-glucosyltransferase activity	subClassOf	UDP-glucosyltransferase activity
+ indole-3-butyrate beta-glucosyltransferase activity	altLabel	UDP-glucose - indol-3-ylbutyrate glucosyltransferase activity
+
+ BAG5_MOUSE	part of	mitochondrion
+ BAG5_MOUSE	prefLabel	BAG5_MOUSE
+ BAG5_MOUSE	enables	ubiquitin protein ligase binding
+ BAG5_MOUSE	definition	BAG family molecular chaperone regulator 5
+ BAG5_MOUSE	altLabel	BAG-5
+ BAG5_MOUSE	part of	nucleus
+ BAG5_MOUSE	part of	perinuclear region of cytoplasm
+ BAG5_MOUSE	part of	membrane
+ BAG5_MOUSE	part of	inclusion body
+ BAG5_MOUSE	enables	chaperone binding
+ BAG5_MOUSE	type	Class
+ BAG5_MOUSE	subClassOf	protein
+ BAG5_MOUSE	inheres in	Mus musculus
+ BAG5_MOUSE	id	UniProt:Q8CI32
+ BAG5_MOUSE	enables	protein kinase binding
+ BAG5_MOUSE	altLabel	Bcl-2-associated athanogene 5
+
+ BAG5	relatedMatch	HGNC:HGNC:941
+ BAG5	prefLabel	BAG5
+ BAG5	relatedMatch	Vega:OTTHUMG00000171763
+ BAG5	encodes	BAG5_HUMAN
+ BAG5	relatedMatch	Ensembl:ENSG00000166170
+ BAG5	definition	The protein-coding gene BAG5 (BCL2-associated athanogene 5) located on the chromosome 14 mapped at 14q32.33.
+ BAG5	relatedMatch	HPRD:04862
+ BAG5	relatedMatch	MIM:603885
+ BAG5	type	Class
+ BAG5	subClassOf	gene
+ BAG5	id	NCBIGene:9529
+ BAG5	altLabel	BAG-5
+ BAG5	inheres in	Homo sapiens
+
+ archaeosine synthase activity	hasOBONamespace	molecular_function
+ archaeosine synthase activity	relatedMatch	EC:2.6.1.97
+ archaeosine synthase activity	definition	Catalysis of the reaction -  L-glutamine + 7-cyano-7-carbaguanine15 in tRNA + H2O -eq- L-glutamate + archaeine15 in tRNA.
+ archaeosine synthase activity	id	GO:0002948
+ archaeosine synthase activity	subClassOf	amidinotransferase activity
+ archaeosine synthase activity	prefLabel	archaeosine synthase activity
+ archaeosine synthase activity	type	Class
+
+ Nkx3-1	relatedMatch	Ensembl:ENSMUSG00000022061
+ Nkx3-1	relatedMatch	MGI:MGI:97352
+ Nkx3-1	altLabel	Bax
+ Nkx3-1	altLabel	Nkx-3.1
+ Nkx3-1	inheres in	Mus musculus
+ Nkx3-1	altLabel	NKX3A
+ Nkx3-1	encodes	NKX31_MOUSE
+ Nkx3-1	id	NCBIGene:18095
+ Nkx3-1	subClassOf	gene
+ Nkx3-1	prefLabel	Nkx3-1
+ Nkx3-1	definition	The protein-coding gene Nkx3-1 (NK-3 transcription factor, locus 1 (Drosophila)) located on the chromosome 14 mapped at 14 D2|14 36.02 cM.
+ Nkx3-1	altLabel	bagpipe
+ Nkx3-1	altLabel	NKX3.1
+ Nkx3-1	relatedMatch	Vega:OTTMUSG00000037540
+ Nkx3-1	type	Class
+
+ Parp9	altLabel	Bagl
+ Parp9	altLabel	Bal
+ Parp9	relatedMatch	MGI:MGI:1933117
+ Parp9	encodes	PARP9_MOUSE
+ Parp9	prefLabel	Parp9
+ Parp9	relatedMatch	Vega:OTTMUSG00000023901
+ Parp9	altLabel	ARTD9
+ Parp9	subClassOf	gene
+ Parp9	type	Class
+ Parp9	relatedMatch	Ensembl:ENSMUSG00000022906
+ Parp9	definition	The protein-coding gene Parp9 (poly (ADP-ribose) polymerase family, member 9) located on the chromosome 16 mapped at 16 B3|16.
+ Parp9	id	NCBIGene:80285
+ Parp9	altLabel	AW214463
+ Parp9	altLabel	PARP-9
+ Parp9	altLabel	BC003281
+ Parp9	inheres in	Mus musculus
+
+ BAG1_RAT	part of	mitochondrion
+ BAG1_RAT	is orthologous to	BAG1_MOUSE
+ BAG1_RAT	enables	molecular_function
+ BAG1_RAT	part of	cytosol
+ BAG1_RAT	part of	cytoplasm
+ BAG1_RAT	part of	nucleus
+ BAG1_RAT	part of	perinuclear region of cytoplasm
+ BAG1_RAT	id	UniProt:B0K019
+ BAG1_RAT	altLabel	BAG-1
+ BAG1_RAT	is orthologous to	J3QTA2_HUMAN
+ BAG1_RAT	is orthologous to	F6TCF9_MOUSE
+ BAG1_RAT	subClassOf	protein
+ BAG1_RAT	enables	chaperone binding
+ BAG1_RAT	inheres in	Rattus Norvegicus
+ BAG1_RAT	type	Class
+ BAG1_RAT	definition	BAG family molecular chaperone regulator 1
+ BAG1_RAT	prefLabel	BAG1_RAT
+ BAG1_RAT	is orthologous to	BAG1_HUMAN
+ BAG1_RAT	altLabel	Bcl-2-associated athanogene 1
+
+ Bag5	relatedMatch	RGD:1310847
+ Bag5	relatedMatch	Ensembl:ENSRNOG00000011527
+ Bag5	definition	The protein-coding gene Bag5 (BCL2-associated athanogene 5) located on the chromosome 6 mapped at 6q32.
+ Bag5	id	NCBIGene:366734
+ Bag5	inheres in	Rattus Norvegicus
+ Bag5	encodes	BAG5_RAT
+ Bag5	subClassOf	gene
+ Bag5	prefLabel	Bag5
+ Bag5	type	Class
+
+ BAG1	relatedMatch	HPRD:03292
+ BAG1	relatedMatch	Ensembl:ENSG00000107262
+ BAG1	altLabel	HAP
+ BAG1	relatedMatch	HGNC:HGNC:937
+ BAG1	altLabel	BAG-1
+ BAG1	id	NCBIGene:573
+ BAG1	prefLabel	BAG1
+ BAG1	type	Class
+ BAG1	definition	The protein-coding gene BAG1 (BCL2-associated athanogene) located on the chromosome 9 mapped at 9p12.
+ BAG1	altLabel	RAP46
+ BAG1	relatedMatch	MIM:601497
+ BAG1	subClassOf	gene
+ BAG1	encodes	BAG1_HUMAN
+ BAG1	inheres in	Homo sapiens
+
+-----------------
+GEXO ONTOLOGY
+-----------------------
+-------------------------------------------------------------------------
+

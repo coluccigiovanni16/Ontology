@@ -1,0 +1,230 @@
+-----------------
+REXO ONTOLOGY
+-----------------------
+-------------------------------------------------------------------------
+
+ Bag3	relatedMatch	RGD:1307794
+ Bag3	relatedMatch	Ensembl:ENSRNOG00000020298
+ Bag3	definition	The protein-coding gene Bag3 (Bcl2-associated athanogene 3) located on the chromosome 1 mapped at 1q36.
+ Bag3	id	NCBIGene:293524
+ Bag3	inheres in	Rattus Norvegicus
+ Bag3	encodes	Q5U2U8_RAT
+ Bag3	subClassOf	gene
+ Bag3	prefLabel	Bag3
+ Bag3	type	Class
+
+ BAG3	relatedMatch	Ensembl:ENSG00000151929
+ BAG3	subClassOf	gene
+ BAG3	altLabel	BIS
+ BAG3	definition	The protein-coding gene BAG3 (BCL2-associated athanogene 3) located on the chromosome 10 mapped at 10q25.2-q26.2.
+ BAG3	encodes	BAG3_HUMAN
+ BAG3	type	Class
+ BAG3	relatedMatch	HPRD:04860
+ BAG3	relatedMatch	HGNC:HGNC:939
+ BAG3	relatedMatch	MIM:603883
+ BAG3	altLabel	CAIR-1
+ BAG3	altLabel	MFM6
+ BAG3	inheres in	Homo sapiens
+ BAG3	altLabel	BAG-3
+ BAG3	id	NCBIGene:9531
+ BAG3	prefLabel	BAG3
+ BAG3	relatedMatch	Vega:OTTHUMG00000019155
+
+ Bag3	altLabel	mg638
+ Bag3	relatedMatch	Ensembl:ENSMUSG00000030847
+ Bag3	altLabel	AA407278
+ Bag3	relatedMatch	MGI:MGI:1352493
+ Bag3	prefLabel	Bag3
+ Bag3	inheres in	Mus musculus
+ Bag3	encodes	BAG3_MOUSE
+ Bag3	subClassOf	gene
+ Bag3	definition	The protein-coding gene Bag3 (BCL2-associated athanogene 3) located on the chromosome 7 mapped at 7 F3|7.
+ Bag3	altLabel	Bis
+ Bag3	id	NCBIGene:29810
+ Bag3	type	Class
+
+ BAG3_HUMAN	altLabel	Bcl-2-binding protein Bis
+ BAG3_HUMAN	bearer of	O-phospho-L-serine
+ BAG3_HUMAN	altLabel	Bcl-2-associated athanogene 3
+ BAG3_HUMAN	bearer of	N-acetyl-L-serine
+ BAG3_HUMAN	altLabel	Docking protein CAIR-1
+ BAG3_HUMAN	part of	Z disc
+ BAG3_HUMAN	inheres in	Homo sapiens
+ BAG3_HUMAN	type	Class
+ BAG3_HUMAN	enables	chaperone binding
+ BAG3_HUMAN	part of	neuron projection
+ BAG3_HUMAN	enables	protein complex binding
+ BAG3_HUMAN	is orthologous to	BAG3_MOUSE
+ BAG3_HUMAN	altLabel	BAG-3
+ BAG3_HUMAN	part of	cytoplasm
+ BAG3_HUMAN	involved in	Cardiomyopathy, dilated 1HH
+ BAG3_HUMAN	part of	plasma membrane
+ BAG3_HUMAN	id	UniProt:O95817
+ BAG3_HUMAN	subClassOf	protein
+ BAG3_HUMAN	bearer of	O-phospho-L-threonine
+ BAG3_HUMAN	part of	cytosol
+ BAG3_HUMAN	involved in	Myopathy, myofibrillar, 6
+ BAG3_HUMAN	definition	BAG family molecular chaperone regulator 3
+ BAG3_HUMAN	prefLabel	BAG3_HUMAN
+ BAG3_HUMAN	enables	protein binding
+ BAG3_HUMAN	is orthologous to	Q5U2U8_RAT
+ BAG3_HUMAN	involved in	protein stabilization
+
+ BAG3_MOUSE	part of	cytosol
+ BAG3_MOUSE	inheres in	Mus musculus
+ BAG3_MOUSE	is orthologous to	BAG3_HUMAN
+ BAG3_MOUSE	part of	Z disc
+ BAG3_MOUSE	part of	cytoplasm
+ BAG3_MOUSE	enables	chaperone binding
+ BAG3_MOUSE	type	Class
+ BAG3_MOUSE	altLabel	Bcl-2-binding protein Bis
+ BAG3_MOUSE	altLabel	BAG-3
+ BAG3_MOUSE	definition	BAG family molecular chaperone regulator 3
+ BAG3_MOUSE	part of	plasma membrane
+ BAG3_MOUSE	subClassOf	protein
+ BAG3_MOUSE	bearer of	O-phospho-L-threonine
+ BAG3_MOUSE	part of	neuron projection
+ BAG3_MOUSE	enables	protein complex binding
+ BAG3_MOUSE	altLabel	Bcl-2-associated athanogene 3
+ BAG3_MOUSE	involved in	protein stabilization
+ BAG3_MOUSE	enables	protein binding
+ BAG3_MOUSE	id	UniProt:Q9JLV1
+ BAG3_MOUSE	bearer of	O-phospho-L-serine
+ BAG3_MOUSE	prefLabel	BAG3_MOUSE
+ BAG3_MOUSE	is orthologous to	Q5U2U8_RAT
+ BAG3_MOUSE	bearer of	N-acetyl-L-serine
+
+ Q5U2U8_RAT	is orthologous to	BAG3_HUMAN
+ Q5U2U8_RAT	definition	Bcl2-associated athanogene 3
+ Q5U2U8_RAT	part of	cytosol
+ Q5U2U8_RAT	prefLabel	Q5U2U8_RAT
+ Q5U2U8_RAT	part of	plasma membrane
+ Q5U2U8_RAT	id	UniProt:Q5U2U8
+ Q5U2U8_RAT	involved in	protein stabilization
+ Q5U2U8_RAT	part of	neuron projection
+ Q5U2U8_RAT	altLabel	Protein Bag3
+ Q5U2U8_RAT	altLabel	RCG40209, isoform CRA_b
+ Q5U2U8_RAT	part of	Z disc
+ Q5U2U8_RAT	inheres in	Rattus Norvegicus
+ Q5U2U8_RAT	enables	chaperone binding
+ Q5U2U8_RAT	subClassOf	protein
+ Q5U2U8_RAT	enables	protein complex binding
+ Q5U2U8_RAT	is orthologous to	BAG3_MOUSE
+ Q5U2U8_RAT	type	Class
+ Q5U2U8_RAT	part of	cytoplasm
+
+-----------------
+GEXO ONTOLOGY
+-----------------------
+-------------------------------------------------------------------------
+
+ Bag3	relatedMatch	RGD:1307794
+ Bag3	relatedMatch	Ensembl:ENSRNOG00000020298
+ Bag3	definition	The protein-coding gene Bag3 (Bcl2-associated athanogene 3) located on the chromosome 1 mapped at 1q36.
+ Bag3	id	NCBIGene:293524
+ Bag3	inheres in	Rattus Norvegicus
+ Bag3	encodes	Q5U2U8_RAT
+ Bag3	subClassOf	gene
+ Bag3	prefLabel	Bag3
+ Bag3	type	Class
+
+ BAG3_HUMAN	altLabel	Bcl-2-binding protein Bis
+ BAG3_HUMAN	bearer of	O-phospho-L-serine
+ BAG3_HUMAN	altLabel	Bcl-2-associated athanogene 3
+ BAG3_HUMAN	bearer of	N-acetyl-L-serine
+ BAG3_HUMAN	altLabel	Docking protein CAIR-1
+ BAG3_HUMAN	part of	Z disc
+ BAG3_HUMAN	inheres in	Homo sapiens
+ BAG3_HUMAN	type	Class
+ BAG3_HUMAN	enables	chaperone binding
+ BAG3_HUMAN	part of	neuron projection
+ BAG3_HUMAN	enables	protein complex binding
+ BAG3_HUMAN	is orthologous to	BAG3_MOUSE
+ BAG3_HUMAN	altLabel	BAG-3
+ BAG3_HUMAN	part of	cytoplasm
+ BAG3_HUMAN	involved in	Cardiomyopathy, dilated 1HH
+ BAG3_HUMAN	part of	plasma membrane
+ BAG3_HUMAN	id	UniProt:O95817
+ BAG3_HUMAN	subClassOf	protein
+ BAG3_HUMAN	bearer of	O-phospho-L-threonine
+ BAG3_HUMAN	part of	cytosol
+ BAG3_HUMAN	involved in	Myopathy, myofibrillar, 6
+ BAG3_HUMAN	definition	BAG family molecular chaperone regulator 3
+ BAG3_HUMAN	prefLabel	BAG3_HUMAN
+ BAG3_HUMAN	enables	protein binding
+ BAG3_HUMAN	is orthologous to	Q5U2U8_RAT
+ BAG3_HUMAN	involved in	protein stabilization
+
+ BAG3	relatedMatch	Ensembl:ENSG00000151929
+ BAG3	subClassOf	gene
+ BAG3	altLabel	BIS
+ BAG3	definition	The protein-coding gene BAG3 (BCL2-associated athanogene 3) located on the chromosome 10 mapped at 10q25.2-q26.2.
+ BAG3	encodes	BAG3_HUMAN
+ BAG3	type	Class
+ BAG3	relatedMatch	HPRD:04860
+ BAG3	relatedMatch	HGNC:HGNC:939
+ BAG3	relatedMatch	MIM:603883
+ BAG3	altLabel	CAIR-1
+ BAG3	altLabel	MFM6
+ BAG3	inheres in	Homo sapiens
+ BAG3	altLabel	BAG-3
+ BAG3	id	NCBIGene:9531
+ BAG3	prefLabel	BAG3
+ BAG3	relatedMatch	Vega:OTTHUMG00000019155
+
+ Bag3	altLabel	mg638
+ Bag3	relatedMatch	Ensembl:ENSMUSG00000030847
+ Bag3	altLabel	AA407278
+ Bag3	relatedMatch	MGI:MGI:1352493
+ Bag3	prefLabel	Bag3
+ Bag3	inheres in	Mus musculus
+ Bag3	encodes	BAG3_MOUSE
+ Bag3	subClassOf	gene
+ Bag3	definition	The protein-coding gene Bag3 (BCL2-associated athanogene 3) located on the chromosome 7 mapped at 7 F3|7.
+ Bag3	altLabel	Bis
+ Bag3	id	NCBIGene:29810
+ Bag3	type	Class
+
+ BAG3_MOUSE	part of	cytosol
+ BAG3_MOUSE	inheres in	Mus musculus
+ BAG3_MOUSE	is orthologous to	BAG3_HUMAN
+ BAG3_MOUSE	part of	Z disc
+ BAG3_MOUSE	part of	cytoplasm
+ BAG3_MOUSE	enables	chaperone binding
+ BAG3_MOUSE	type	Class
+ BAG3_MOUSE	altLabel	Bcl-2-binding protein Bis
+ BAG3_MOUSE	altLabel	BAG-3
+ BAG3_MOUSE	definition	BAG family molecular chaperone regulator 3
+ BAG3_MOUSE	part of	plasma membrane
+ BAG3_MOUSE	subClassOf	protein
+ BAG3_MOUSE	bearer of	O-phospho-L-threonine
+ BAG3_MOUSE	part of	neuron projection
+ BAG3_MOUSE	enables	protein complex binding
+ BAG3_MOUSE	altLabel	Bcl-2-associated athanogene 3
+ BAG3_MOUSE	involved in	protein stabilization
+ BAG3_MOUSE	enables	protein binding
+ BAG3_MOUSE	id	UniProt:Q9JLV1
+ BAG3_MOUSE	bearer of	O-phospho-L-serine
+ BAG3_MOUSE	prefLabel	BAG3_MOUSE
+ BAG3_MOUSE	is orthologous to	Q5U2U8_RAT
+ BAG3_MOUSE	bearer of	N-acetyl-L-serine
+
+ Q5U2U8_RAT	is orthologous to	BAG3_HUMAN
+ Q5U2U8_RAT	definition	Bcl2-associated athanogene 3
+ Q5U2U8_RAT	part of	cytosol
+ Q5U2U8_RAT	prefLabel	Q5U2U8_RAT
+ Q5U2U8_RAT	part of	plasma membrane
+ Q5U2U8_RAT	id	UniProt:Q5U2U8
+ Q5U2U8_RAT	involved in	protein stabilization
+ Q5U2U8_RAT	part of	neuron projection
+ Q5U2U8_RAT	altLabel	Protein Bag3
+ Q5U2U8_RAT	altLabel	RCG40209, isoform CRA_b
+ Q5U2U8_RAT	part of	Z disc
+ Q5U2U8_RAT	inheres in	Rattus Norvegicus
+ Q5U2U8_RAT	enables	chaperone binding
+ Q5U2U8_RAT	subClassOf	protein
+ Q5U2U8_RAT	enables	protein complex binding
+ Q5U2U8_RAT	is orthologous to	BAG3_MOUSE
+ Q5U2U8_RAT	type	Class
+ Q5U2U8_RAT	part of	cytoplasm
+
