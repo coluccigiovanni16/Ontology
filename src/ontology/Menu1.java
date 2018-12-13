@@ -74,6 +74,8 @@ public class Menu1 extends JFrame {
      String estensione;     
      boolean[] choosenOnto={false,false,false,false};
      LinkedList<OntModel> ontologies = new LinkedList<OntModel>();
+     Property prefLabel;
+
  
     
      
@@ -503,11 +505,12 @@ public class Menu1 extends JFrame {
         ontologies.add(o2);
         jCheckBox_Ontologia2.setForeground(Color.GREEN);
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o3.read("gexo.owl");
+        o3.read("..//gexo.owl");
         ontologies.add(o3);
+        prefLabel = o3.getProperty("http://www.w3.org/2004/02/skos/core#prefLabel");
         jCheckBox_Ontologia3.setForeground(Color.GREEN);
         OntModel o4 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o3.read("EDAM.owl");
+        //o3.read("EDAM.owl");
         ontologies.add(o4);
         jCheckBox_Ontologia4.setForeground(Color.GREEN);
         jButton_Search.setEnabled(true);
@@ -518,22 +521,52 @@ public class Menu1 extends JFrame {
  
    public void querying(OntModel m_ont){       
    String search = campoCerca.getText();
-   String queryString = "SELECT DISTINCT ?x  WHERE { ?x ?y ?z . FILTER (regex(?z,\"" + search + "\"))}";
+   String queryString = "SELECT DISTINCT ?x  WHERE { ?x ?y ?z . FILTER (regex(?z,\"" + search + "\",'i'))}";
     
    System.out.println (queryString);
 
    Query query = QueryFactory.create(queryString,Syntax.syntaxARQ);    
         QueryExecution qexec = QueryExecutionFactory.create(query, m_ont); 
-        ResultSet results = qexec.execSelect();
         System.out.println("\nresult\n");
         StringBuilder sb = new StringBuilder();
-
+        
+        /*old reseult onlyt id uri
+        ResultSet results = qexec.execSelect();
         for ( ; results.hasNext() ; )
         {
           QuerySolution soln = results.nextSolution() ;
           System.out.println(soln);
           sb.append(soln +"\n"); //<br> tag to insert line breaks
         } 
+        */
+        
+        //new result with all the information(id object explosion)
+        for ( ResultSet results = qexec.execSelect(); results.hasNext(); ) {
+
+            QuerySolution soln = results.nextSolution();
+            RDFNode node = soln.get("?x");
+            Resource r = node.asResource();
+            int i = 1;
+            for (StmtIterator lP = r.listProperties(); lP.hasNext(); ) {
+                Statement s = lP.nextStatement();
+                //System.out.println(i + " " + s.asTriple().toString());
+                System.out.print(i + " " + s.getSubject().getRequiredProperty(prefLabel).getObject() + "\t");
+                if (s.getObject().isLiteral() || s.getPredicate().getNameSpace().equals("http://www.w3.org/2000/01/rdf-schema#") || s.getPredicate().getNameSpace().equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#")) {
+                    System.out.print(s.getPredicate().getLocalName() + "\t");
+                    if(!s.getObject().isLiteral()){
+                        System.out.println(s.getObject().asResource().getLocalName());
+                    }
+                    else{
+                    System.out.println(s.getObject().toString());
+                    }
+                } else {
+                    System.out.print(s.getPredicate().asResource().getProperty(prefLabel).getObject() + "\t");
+                    System.out.println(s.getObject().asResource().getProperty(prefLabel).getObject());
+                }
+                i++;
+            }
+            System.out.println("\n");
+        }
               
         jTextPane_results.setText(jTextPane_results.getText()+"\n-------------------------------------------------------------------------\n"+sb.toString());
        
