@@ -340,7 +340,6 @@ public class Menu1 extends JFrame {
         } else {
             choosenOnto[1] = false;
         }
-        System.out.println(choosenOnto[1]);
 
     }//GEN-LAST:event_jCheckBox_Ontologia2ActionPerformed
 
@@ -367,7 +366,6 @@ public class Menu1 extends JFrame {
         } else {
             choosenOnto[0] = false;
         }
-        System.out.println(choosenOnto[0]);
 
     }//GEN-LAST:event_jCheckBox_Ontologia1ActionPerformed
 
@@ -378,7 +376,6 @@ public class Menu1 extends JFrame {
         } else {
             choosenOnto[2] = false;
         }
-        System.out.println(choosenOnto[2]);
     }//GEN-LAST:event_jCheckBox_Ontologia3ActionPerformed
 
     private void jCheckBox_Ontologia4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia4ActionPerformed
@@ -388,7 +385,6 @@ public class Menu1 extends JFrame {
         } else {
             choosenOnto[3] = false;
         }
-        System.out.println(choosenOnto[3]);
     }//GEN-LAST:event_jCheckBox_Ontologia4ActionPerformed
 
     private void campoCercaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoCercaMouseClicked
