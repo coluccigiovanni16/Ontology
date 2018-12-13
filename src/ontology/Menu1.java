@@ -25,23 +25,11 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.Syntax;
 import com.hp.hpl.jena.rdf.model.*;
 import java.awt.Color;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.Writer;
 import java.util.LinkedList;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 /**
  *
- * @author Luca
+ * @author Team Bioinformatic Ontology
  */
 public class Menu1 extends JFrame {
 
@@ -270,7 +258,7 @@ public class Menu1 extends JFrame {
                             .addComponent(jCheckBox_Ontologia3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jCheckBox_Ontologia4))))
-                .addGap(0, 30, Short.MAX_VALUE))
+                .addGap(0, 49, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jCheckBox_Ontologia1, jCheckBox_Ontologia2, jCheckBox_Ontologia3, jCheckBox_Ontologia4});
@@ -282,7 +270,7 @@ public class Menu1 extends JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoCerca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -393,16 +381,12 @@ public class Menu1 extends JFrame {
         // TODO add your handling code here:
         String cerca = campoCerca.getText();
         if (jButton_Search.isEnabled() && !cerca.equals("")) {
-
-            String query = "SELECT DISTINCT ?x  WHERE { ?x ?y ?z . FILTER (regex(?z,\"" + cerca + "\"))}";
-            System.out.println(query);
             jTextPane_results.setText("");
             for (int i = 0; i < choosenOnto.length; i++) {
                 if (choosenOnto[i]) {
                     jTextPane_results.setText(jTextPane_results.getText() + "\n-----------------\n" + ontologiesName.get(i) + "\n-----------------------\n");
                     querying(ontologies.get(i), i+1);
                 }
-                // fruit is an element of the `fruits` array.
             }
         }
 
@@ -458,7 +442,7 @@ public class Menu1 extends JFrame {
     private void jButton_Save_asMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Save_asMousePressed
         if (jTextPane_results.getText() != "") {
             try {
-                scriviPDF("report.txt", jTextPane_results.getText());
+                scriviPDF(jTextPane_results.getText());
             } catch (IOException ex) {
                 Logger.getLogger(Menu1.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -489,7 +473,7 @@ public class Menu1 extends JFrame {
         ontologiesName.add("REXO ONTOLOGY");
         prefLabel = o2.getProperty("http://www.w3.org/2004/02/skos/core#prefLabel");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o3.read("..//EDAM.owl");
+        o3.read("..//EDAM.owl");
         ontologies.add(o3);
         ontologiesName.add("EDAM ONTOLOGY");
         jCheckBox_Ontologia3.setForeground(Color.black);
@@ -503,32 +487,9 @@ public class Menu1 extends JFrame {
 
     }
 
-    public void scriviPDF(String path, String result) throws IOException {
-        result = result.replace("\n", "").replace("\r", "");
-        // Create a document and add a page to it
-        PDDocument document = new PDDocument();
-        PDPage page = new PDPage();
-        document.addPage(page);
-
-        // Create a new font object selecting one of the PDF base fonts
-        PDFont font = PDType1Font.HELVETICA_BOLD;
-
-        // Start a new content stream which will "hold" the to be created content
-        PDPageContentStream contentStream = new PDPageContentStream(document, page);
-
-        // Define a text content stream using the selected font, moving the cursor and drawing the text "Hello World"
-        contentStream.beginText();
-        contentStream.setFont(font, 12);
-        contentStream.moveTextPositionByAmount(100, 700);
-        contentStream.drawString(result);
-        contentStream.endText();
-
-        // Make sure that the content stream is closed:
-        contentStream.close();
-
-        // Save the results and ensure that the document is properly closed:
-        document.save(getCampoCerca() + ".pdf");
-        document.close();
+    public void scriviPDF(String result) throws IOException {
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
