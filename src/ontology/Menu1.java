@@ -7,21 +7,13 @@ package ontology;
  
 import java.awt.Desktop;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JEditorPane;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.event.HyperlinkEvent;
-import javax.swing.event.HyperlinkListener;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.query.Query;
@@ -37,11 +29,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.Writer;
 import java.util.LinkedList;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 
 /**
@@ -58,7 +45,7 @@ public class Menu1 extends JFrame {
     public Menu1() {
         
         initComponents();  
-        
+        jTextPane_results.setEditable(false);
         
     }
 
@@ -75,6 +62,7 @@ public class Menu1 extends JFrame {
      boolean[] choosenOnto={false,false,false,false};
      LinkedList<OntModel> ontologies = new LinkedList<OntModel>();
      Property prefLabel;
+     
 
  
     
@@ -86,9 +74,11 @@ public class Menu1 extends JFrame {
           
                 new Menu1().setVisible(true);
             }
+                     
+
             
         });
-        
+
         //carico ontologie
         
       
@@ -529,6 +519,7 @@ public class Menu1 extends JFrame {
         QueryExecution qexec = QueryExecutionFactory.create(query, m_ont); 
         System.out.println("\nresult\n");
         StringBuilder sb = new StringBuilder();
+        sb.append("\n");
         
         /*old reseult onlyt id uri
         ResultSet results = qexec.execSelect();
@@ -550,25 +541,25 @@ public class Menu1 extends JFrame {
             for (StmtIterator lP = r.listProperties(); lP.hasNext(); ) {
                 Statement s = lP.nextStatement();
                 //System.out.println(i + " " + s.asTriple().toString());
-                System.out.print(i + " " + s.getSubject().getRequiredProperty(prefLabel).getObject() + "\t");
+                sb.append(i + " " + s.getSubject().getRequiredProperty(prefLabel).getObject() + "\t");
                 if (s.getObject().isLiteral() || s.getPredicate().getNameSpace().equals("http://www.w3.org/2000/01/rdf-schema#") || s.getPredicate().getNameSpace().equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#")) {
-                    System.out.print(s.getPredicate().getLocalName() + "\t");
+                    sb.append(s.getPredicate().getLocalName() + "\t");
                     if(s.getPredicate().getLocalName().equals("type")){
-                        System.out.println(s.getObject().asResource().getLocalName());
+                        sb.append(s.getObject().asResource().getLocalName()+"\n");
                     }
                     else if(s.getPredicate().getLocalName().equals("subClassOf")){
-                        System.out.println(s.getObject().asResource().getProperty(prefLabel).getObject());
+                        sb.append(s.getObject().asResource().getProperty(prefLabel).getObject()+"\n");
                     }
                     else{
-                    System.out.println(s.getObject().toString());
+                    sb.append(s.getObject().toString());
                     }
                 } else {
-                    System.out.print(s.getPredicate().asResource().getProperty(prefLabel).getObject() + "\t");
-                    System.out.println(s.getObject().asResource().getProperty(prefLabel).getObject());
+                    sb.append(s.getPredicate().asResource().getProperty(prefLabel).getObject() + "\t");
+                    sb.append(s.getObject().asResource().getProperty(prefLabel).getObject()+"\n");
                 }
                 i++;
             }
-            System.out.println("\n");
+            sb.append('\n');
         }
               
         jTextPane_results.setText(jTextPane_results.getText()+"\n-------------------------------------------------------------------------\n"+sb.toString());
