@@ -463,21 +463,21 @@ public class Menu1 extends JFrame {
 
     private void caricaOntologie() {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o1.read("..//go1.owl");
+        o1.read("..//go.owl");
         ontologies.add(o1);
         ontologiesName.add("GO ONTOLOGY");
         jCheckBox_Ontologia1.setForeground(Color.blue);
         OntModel o2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o2.read("..//rexo1.owl");
+        o2.read("..//rexo.owl");
         ontologies.add(o2);
         ontologiesName.add("REXO ONTOLOGY");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o3.read("..//EDAM1.owl");
+        o3.read("..//EDAM.owl");
         ontologies.add(o3);
         ontologiesName.add("EDAM ONTOLOGY");
         jCheckBox_Ontologia3.setForeground(Color.black);
         OntModel o4 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o4.read("..//gexo1.owl");
+        o4.read("..//gexo.owl");
         ontologies.add(o4);
         ontologiesName.add("GEXO ONTOLOGY");
         jCheckBox_Ontologia4.setForeground(Color.green);
