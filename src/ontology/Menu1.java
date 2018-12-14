@@ -26,11 +26,20 @@ import com.hp.hpl.jena.query.Syntax;
 import com.hp.hpl.jena.rdf.model.*;
 import java.awt.Color;
 import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.LinkedList;
 import javax.swing.JEditorPane;
+import javax.swing.JFileChooser;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 /**
  *
@@ -404,10 +413,10 @@ public class Menu1 extends JFrame {
     }//GEN-LAST:event_jCheckBox_Ontologia4ActionPerformed
 
     public void printOntobox() {
-        System.out.println(choosenOnto[0]);
+        /*System.out.println(choosenOnto[0]);
         System.out.println(choosenOnto[1]);
         System.out.println(choosenOnto[2]);
-        System.out.println(choosenOnto[3]);
+        System.out.println(choosenOnto[3]);*/
     }
     private void campoCercaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoCercaMouseClicked
         // TODO add your handling code here:
@@ -454,7 +463,6 @@ public class Menu1 extends JFrame {
             Resource r = node.asResource();
             for (StmtIterator lP = r.listProperties(); lP.hasNext();) {
                 Statement s = lP.nextStatement();
-                System.out.println(s.asTriple().equals(s));
                 risultatoTemp = risultatoTemp.concat("<br>");
                 if (s.getSubject().isResource()) {
                     if (s.getSubject().asResource().hasProperty(label)) {
@@ -500,11 +508,7 @@ public class Menu1 extends JFrame {
 
     private void jButton_Save_asMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Save_asMousePressed
         if (jEditorPane1.getText() != "") {
-            try {
-                scriviPDF(jEditorPane1.getText());
-            } catch (IOException ex) {
-                Logger.getLogger(Menu1.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            sceglifile(jEditorPane1.getText());
         }
     }//GEN-LAST:event_jButton_Save_asMousePressed
 
@@ -550,11 +554,39 @@ public class Menu1 extends JFrame {
 
     }
 
-    public void scriviPDF(String result) throws IOException {
-        BufferedWriter bw;
-        bw = new BufferedWriter(new FileWriter("a.html"));
-        bw.write(result);
-        bw.close();
+    public static void sceglifile(String resultToPDF) {
+        String filename;
+        JFileChooser savefile = new JFileChooser();
+        int returnVal = savefile.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File pr = savefile.getSelectedFile();
+            filename = pr.getName();
+            String path = savefile.getCurrentDirectory().getAbsolutePath() + "//" + filename+".html";
+            try {
+                scriviPDF(path, resultToPDF);
+            } catch (IOException ex) {
+                Logger.getLogger(Menu1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }
+
+    public static void scriviPDF(String path, String tesxtFromResult) throws IOException {
+
+        Writer writer = null;
+
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream(path)));
+            writer.write(tesxtFromResult);
+        } catch (IOException ex) {
+            // Report
+        } finally {
+            try {
+                writer.close();
+            } catch (IOException ex) {
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
