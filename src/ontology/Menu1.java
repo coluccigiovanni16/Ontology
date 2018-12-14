@@ -27,19 +27,11 @@ import com.hp.hpl.jena.rdf.model.*;
 import java.awt.Color;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.LinkedList;
-import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.event.HyperlinkEvent;
-import javax.swing.event.HyperlinkListener;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 /**
  *
@@ -51,8 +43,8 @@ public class Menu1 extends JFrame {
      * Creates new form Menu1
      */
     public Menu1() {
-        this.ontologies = new LinkedList<OntModel>();
-        this.ontologiesName = new LinkedList<String>();
+        this.ontologies = new LinkedList<>();
+        this.ontologiesName = new LinkedList<>();
 
         initComponents();
         jEditorPane1.addHyperlinkListener(e -> {
@@ -121,16 +113,6 @@ public class Menu1 extends JFrame {
         jEditorPane1 = new javax.swing.JEditorPane();
 
         jButton_Cerca.setText("Cerca");
-        jButton_Cerca.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton_CercaMouseClicked(evt);
-            }
-        });
-        jButton_Cerca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_CercaActionPerformed(evt);
-            }
-        });
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -188,11 +170,6 @@ public class Menu1 extends JFrame {
                 ReadMEMouseClicked(evt);
             }
         });
-        ReadME.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReadMEActionPerformed(evt);
-            }
-        });
 
         jButton_Save_as.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton_Save_as.setText("Export");
@@ -200,11 +177,6 @@ public class Menu1 extends JFrame {
         jButton_Save_as.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jButton_Save_asMousePressed(evt);
-            }
-        });
-        jButton_Save_as.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Save_asActionPerformed(evt);
             }
         });
 
@@ -217,11 +189,6 @@ public class Menu1 extends JFrame {
         jButton_Search.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jButton_SearchMousePressed(evt);
-            }
-        });
-        jButton_Search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_SearchActionPerformed(evt);
             }
         });
 
@@ -252,11 +219,6 @@ public class Menu1 extends JFrame {
         jEditorPane1.setEditable(false);
         jEditorPane1.setContentType("text/html"); // NOI18N
         jEditorPane1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jEditorPane1.addHyperlinkListener(new javax.swing.event.HyperlinkListener() {
-            public void hyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {
-                jEditorPane1HyperlinkUpdate(evt);
-            }
-        });
         jScrollPane1.setViewportView(jEditorPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -339,19 +301,10 @@ public class Menu1 extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_CercaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_CercaMouseClicked
-
-
-    }//GEN-LAST:event_jButton_CercaMouseClicked
-
     public JTextField getCampoCerca() {
         return campoCerca;
     }
 
-
-    private void jButton_CercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CercaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_CercaActionPerformed
 
     private void jCheckBox_Ontologia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia2ActionPerformed
         // TODO add your handling code here:
@@ -360,8 +313,6 @@ public class Menu1 extends JFrame {
         } else {
             choosenOnto[1] = false;
         }
-        printOntobox();
-
     }//GEN-LAST:event_jCheckBox_Ontologia2ActionPerformed
 
     private void ReadMEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReadMEMouseClicked
@@ -382,42 +333,20 @@ public class Menu1 extends JFrame {
 
     private void jCheckBox_Ontologia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia1ActionPerformed
         // TODO add your handling code here:
-        if (jCheckBox_Ontologia1.isSelected()) {
-            choosenOnto[0] = true;
-        } else {
-            choosenOnto[0] = false;
-        }
-        printOntobox();
-
+        choosenOnto[0] = jCheckBox_Ontologia1.isSelected();
     }//GEN-LAST:event_jCheckBox_Ontologia1ActionPerformed
 
     private void jCheckBox_Ontologia3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia3ActionPerformed
         // TODO add your handling code here:
-        if (jCheckBox_Ontologia3.isSelected()) {
-            choosenOnto[2] = true;
-        } else {
-            choosenOnto[2] = false;
-        }
-        printOntobox();
-
+        choosenOnto[2] = jCheckBox_Ontologia3.isSelected();
     }//GEN-LAST:event_jCheckBox_Ontologia3ActionPerformed
 
     private void jCheckBox_Ontologia4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia4ActionPerformed
         // TODO add your handling code here:
-        if (jCheckBox_Ontologia4.isSelected()) {
-            choosenOnto[3] = true;
-        } else {
-            choosenOnto[3] = false;
-        }
-        printOntobox();
+        choosenOnto[3] = jCheckBox_Ontologia4.isSelected();
     }//GEN-LAST:event_jCheckBox_Ontologia4ActionPerformed
 
-    public void printOntobox() {
-        /*System.out.println(choosenOnto[0]);
-        System.out.println(choosenOnto[1]);
-        System.out.println(choosenOnto[2]);
-        System.out.println(choosenOnto[3]);*/
-    }
+
     private void campoCercaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoCercaMouseClicked
         // TODO add your handling code here:
         campoCerca.setText("");
@@ -431,7 +360,7 @@ public class Menu1 extends JFrame {
             jEditorPane1.setText("");
             for (int i = 0; i < choosenOnto.length; i++) {
                 if (choosenOnto[i]) {
-                    result = result.concat("<p><font size = '8' face = 'arial' color = 'red'><br>----------------<br>"
+                    result = result.concat("<p><font size = '8' face = 'arial' color = 'red'><br>-----------------------<br>"
                             + ontologiesName.get(i) + "<br>-----------------------<br></font></p><font size = '5' face = 'arial'>");
                     result = result.concat(querying(ontologies.get(i), i + 1));
                 }
@@ -450,8 +379,9 @@ public class Menu1 extends JFrame {
         QueryExecution qexec = QueryExecutionFactory.create(query, m_ont);
         System.out.println("\nresult\n");
         String risultatoTemp = "";
-        risultatoTemp = risultatoTemp.concat("<br>");
+        risultatoTemp = risultatoTemp.concat("<br><table class=\"GeneratedTable\"><tbody>");
         Property label = null;
+        String subj="", obj="", pred="";
         if (ontoNum == 2 || ontoNum == 4) {
             label = m_ont.getProperty("http://www.w3.org/2004/02/skos/core#prefLabel");
         } else if (ontoNum == 1 || ontoNum == 3) {
@@ -466,67 +396,52 @@ public class Menu1 extends JFrame {
                 risultatoTemp = risultatoTemp.concat("<br>");
                 if (s.getSubject().isResource()) {
                     if (s.getSubject().asResource().hasProperty(label)) {
-                        risultatoTemp = risultatoTemp.concat("   <a href='" + s.getSubject().asResource().getURI() + "/'>"
+                        subj = ("<a href='" + s.getSubject().asResource().getURI() + "/'>"
                                 + s.getSubject().asResource().getRequiredProperty(label).getObject() + "</a>      ");
                         //risultatoTemp = risultatoTemp.concat((s.getPredicate().asResource().getRequiredProperty(label).getObject().toString() + "      "));
                     } else {
-                        risultatoTemp = risultatoTemp.concat((s.getSubject().getLocalName() + "      "));
+                        subj = ((s.getSubject().getLocalName() + "      "));
                     }
                 } else {
-                    risultatoTemp = risultatoTemp.concat((s.getSubject().toString() + "      "));
+                    subj = ((s.getSubject().toString() + "      "));
                 }
                 if (s.getPredicate().isResource()) {
                     if (s.getPredicate().asResource().hasProperty(label)) {
-                        risultatoTemp = risultatoTemp.concat("   <a href='" + s.getPredicate().asResource().getURI() + "/'>"
+                        pred = ("   <a href='" + s.getPredicate().asResource().getURI() + "/'>"
                                 + s.getPredicate().asResource().getRequiredProperty(label).getObject() + "</a>      ");
                         //risultatoTemp = risultatoTemp.concat((s.getPredicate().asResource().getRequiredProperty(label).getObject().toString() + "      "));
                     } else {
-                        risultatoTemp = risultatoTemp.concat((s.getPredicate().getLocalName() + "      "));
+                        pred = ((s.getPredicate().getLocalName() + "      "));
                     }
                 } else {
-                    risultatoTemp = risultatoTemp.concat((s.getPredicate().toString() + "      "));
+                    pred = ((s.getPredicate().toString() + "      "));
                 }
                 if (s.getObject().isResource()) {
                     if (s.getObject().asResource().hasProperty(label)) {
-                        risultatoTemp = risultatoTemp.concat("  <a href='" + s.getObject().asResource().getURI() + "/'>"
+                        obj = ("  <a href='" + s.getObject().asResource().getURI() + "/'>"
                                 + s.getObject().asResource().getRequiredProperty(label).getObject() + "</a>      ");
                         //risultatoTemp = risultatoTemp.concat((s.getObject().asResource().getRequiredProperty(label).getObject().toString() + "      "));
                     } else {
-                        risultatoTemp = risultatoTemp.concat((s.getObject().asResource().getLocalName() + "      "));
+                        obj = ((s.getObject().asResource().getLocalName() + "      "));
                     }
                 } else {
-                    risultatoTemp = risultatoTemp.concat((s.getObject().toString() + "      "));
+                    obj = ((s.getObject().toString() + "      "));
                 }
-
             }
-            risultatoTemp = risultatoTemp.concat("<br>");
+
+            risultatoTemp = risultatoTemp.concat("<tr><td>" + subj + "</td><td>" + pred + "</td><td>" + obj + "</td></tr><br>");
         }
-        risultatoTemp = risultatoTemp.concat("<br>-------------------------------------------------------------------------<br>");
+        risultatoTemp = risultatoTemp.concat("</tbody></table><br>-------------------------------------------------------------------------<br>");
         return risultatoTemp;
     }
 
 
     private void jButton_Save_asMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Save_asMousePressed
-        if (jEditorPane1.getText() != "") {
+        if (!"".equals(jEditorPane1.getText())) {
             sceglifile(jEditorPane1.getText());
+        } else {
         }
     }//GEN-LAST:event_jButton_Save_asMousePressed
-
-    private void ReadMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReadMEActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ReadMEActionPerformed
-
-    private void jButton_Save_asActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Save_asActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Save_asActionPerformed
-
-    private void jButton_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_SearchActionPerformed
-
-    private void jEditorPane1HyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {//GEN-FIRST:event_jEditorPane1HyperlinkUpdate
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jEditorPane1HyperlinkUpdate
 
     private void caricaOntologie() {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
@@ -538,7 +453,6 @@ public class Menu1 extends JFrame {
         o2.read("..//rexo.owl");
         ontologies.add(o2);
         ontologiesName.add("REXO ONTOLOGY");
-        //prefLabel = o2.getProperty("http://www.w3.org/2004/02/skos/core#prefLabel");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
         o3.read("..//EDAM.owl");
         ontologies.add(o3);
@@ -548,7 +462,6 @@ public class Menu1 extends JFrame {
         o4.read("..//gexo.owl");
         ontologies.add(o4);
         ontologiesName.add("GEXO ONTOLOGY");
-        //prefLabel = o4.getProperty("http://www.w3.org/2004/02/skos/core#prefLabel");
         jCheckBox_Ontologia4.setForeground(Color.green);
         jButton_Search.setEnabled(true);
 
@@ -561,7 +474,7 @@ public class Menu1 extends JFrame {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File pr = savefile.getSelectedFile();
             filename = pr.getName();
-            String path = savefile.getCurrentDirectory().getAbsolutePath() + "//" + filename+".html";
+            String path = savefile.getCurrentDirectory().getAbsolutePath() + "//" + filename + ".html";
             try {
                 scriviPDF(path, resultToPDF);
             } catch (IOException ex) {
