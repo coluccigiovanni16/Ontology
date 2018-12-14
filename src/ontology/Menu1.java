@@ -103,12 +103,11 @@ public class Menu1 extends JFrame {
         jLabel1 = new javax.swing.JLabel();
         ReadME = new javax.swing.JButton();
         jButton_Save_as = new javax.swing.JButton();
-        loading = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jButton_Search = new javax.swing.JButton();
         jCheckBox_Ontologia3 = new javax.swing.JCheckBox();
         jCheckBox_Ontologia4 = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
         jLabel5 = new javax.swing.JLabel();
@@ -180,9 +179,16 @@ public class Menu1 extends JFrame {
                 jButton_Save_asMousePressed(evt);
             }
         });
+        jButton_Save_as.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Save_asActionPerformed(evt);
+            }
+        });
 
-        loading.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        loading.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ontology/giphy.gif"))); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ontology/giphy.gif"))); // NOI18N
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
 
         jButton_Search.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton_Search.setText("Search");
@@ -213,9 +219,7 @@ public class Menu1 extends JFrame {
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ontology/ontlogo.jpg"))); // NOI18N
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ontology/diemlogo.png"))); // NOI18N
+        jLabel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jEditorPane1.setEditable(false);
         jEditorPane1.setContentType("text/html"); // NOI18N
@@ -224,6 +228,7 @@ public class Menu1 extends JFrame {
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ontology/logo_standard.png"))); // NOI18N
+        jLabel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -233,45 +238,40 @@ public class Menu1 extends JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ReadME, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(619, 619, 619)
-                                .addComponent(jButton_Save_as, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(156, 156, 156)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(73, 73, 73)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 861, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 49, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoCerca, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(Ontologia, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox_Ontologia1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox_Ontologia2)
-                                .addGap(8, 8, 8)
-                                .addComponent(jCheckBox_Ontologia3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox_Ontologia4)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(campoCerca)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(Ontologia, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jCheckBox_Ontologia1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jCheckBox_Ontologia2)
+                                        .addGap(8, 8, 8)
+                                        .addComponent(jCheckBox_Ontologia3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jCheckBox_Ontologia4)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(jButton_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(loading, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(83, 83, 83))))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(40, 40, 40)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(766, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 861, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(207, 207, 207))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(ReadME, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton_Save_as, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jCheckBox_Ontologia1, jCheckBox_Ontologia2, jCheckBox_Ontologia3, jCheckBox_Ontologia4});
@@ -279,17 +279,17 @@ public class Menu1 extends JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(campoCerca)
-                    .addComponent(jButton_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
+                        .addContainerGap(18, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(campoCerca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_Search, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Ontologia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBox_Ontologia1)
@@ -299,20 +299,15 @@ public class Menu1 extends JFrame {
                         .addGap(19, 19, 19)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(loading, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ReadME)
-                    .addComponent(jButton_Save_as, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(23, 23, 23)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(632, 632, 632)))
+                    .addComponent(jButton_Save_as, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ReadME))
+                .addGap(15, 15, 15))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jCheckBox_Ontologia1, jCheckBox_Ontologia2, jCheckBox_Ontologia3, jCheckBox_Ontologia4});
@@ -320,6 +315,7 @@ public class Menu1 extends JFrame {
         getAccessibleContext().setAccessibleName("                Ontology Browser");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     public JTextField getCampoCerca() {
@@ -377,9 +373,8 @@ public class Menu1 extends JFrame {
         // TODO add your handling code here:
         String cerca = campoCerca.getText();
         String result = "";
-        loading.setVisible(true);
         if (jButton_Search.isEnabled() && !cerca.equals("")) {
-            loading.setVisible(true);
+            Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
             jEditorPane1.setText("");
             for (int i = 0; i < choosenOnto.length; i++) {
                 if (choosenOnto[i]) {
@@ -390,8 +385,9 @@ public class Menu1 extends JFrame {
             }
             result = result.concat("</font></p>");
         }
-        System.out.println(result);
         jEditorPane1.setText(result);
+        Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
     }//GEN-LAST:event_jButton_SearchMousePressed
 
     public String querying(OntModel m_ont, int ontoNum) {
@@ -399,7 +395,6 @@ public class Menu1 extends JFrame {
         String queryString = "SELECT DISTINCT ?x  WHERE { ?x ?y ?z . FILTER (regex(?z,\"" + search + "\",'i'))}";
         Query query = QueryFactory.create(queryString, Syntax.syntaxARQ);
         QueryExecution qexec = QueryExecutionFactory.create(query, m_ont);
-        System.out.println("\nresult\n");
         String risultatoTemp = "";
         risultatoTemp = risultatoTemp.concat("<br><table class=\"GeneratedTable\"><tbody>");
         Property label = null;
@@ -420,7 +415,6 @@ public class Menu1 extends JFrame {
                     if (s.getSubject().asResource().hasProperty(label)) {
                         subj = ("<a href='" + s.getSubject().asResource().getURI() + "/'>"
                                 + s.getSubject().asResource().getRequiredProperty(label).getObject() + "</a>      ");
-                        //risultatoTemp = risultatoTemp.concat((s.getPredicate().asResource().getRequiredProperty(label).getObject().toString() + "      "));
                     } else {
                         subj = ((s.getSubject().getLocalName() + "      "));
                     }
@@ -431,7 +425,6 @@ public class Menu1 extends JFrame {
                     if (s.getPredicate().asResource().hasProperty(label)) {
                         pred = ("   <a href='" + s.getPredicate().asResource().getURI() + "/'>"
                                 + s.getPredicate().asResource().getRequiredProperty(label).getObject() + "</a>      ");
-                        //risultatoTemp = risultatoTemp.concat((s.getPredicate().asResource().getRequiredProperty(label).getObject().toString() + "      "));
                     } else {
                         pred = ((s.getPredicate().getLocalName() + "      "));
                     }
@@ -442,16 +435,15 @@ public class Menu1 extends JFrame {
                     if (s.getObject().asResource().hasProperty(label)) {
                         obj = ("  <a href='" + s.getObject().asResource().getURI() + "/'>"
                                 + s.getObject().asResource().getRequiredProperty(label).getObject() + "</a>      ");
-                        //risultatoTemp = risultatoTemp.concat((s.getObject().asResource().getRequiredProperty(label).getObject().toString() + "      "));
                     } else {
                         obj = ((s.getObject().asResource().getLocalName() + "      "));
                     }
                 } else {
                     obj = ((s.getObject().toString() + "      "));
                 }
+                risultatoTemp = risultatoTemp.concat("<tr><td>" + subj + "</td><td>" + pred + "</td><td>" + obj + "</td></tr><br>");
             }
 
-            risultatoTemp = risultatoTemp.concat("<tr><td>" + subj + "</td><td>" + pred + "</td><td>" + obj + "</td></tr><br>");
         }
         risultatoTemp = risultatoTemp.concat("</tbody></table><br>-------------------------------------------------------------------------<br>");
         return risultatoTemp;
@@ -465,23 +457,27 @@ public class Menu1 extends JFrame {
         }
     }//GEN-LAST:event_jButton_Save_asMousePressed
 
+    private void jButton_Save_asActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Save_asActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_Save_asActionPerformed
+
     private void caricaOntologie() {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o1.read("..//go.owl");
+        o1.read("..//go1.owl");
         ontologies.add(o1);
         ontologiesName.add("GO ONTOLOGY");
         jCheckBox_Ontologia1.setForeground(Color.blue);
         OntModel o2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o2.read("..//rexo.owl");
+        o2.read("..//rexo1.owl");
         ontologies.add(o2);
         ontologiesName.add("REXO ONTOLOGY");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o3.read("..//EDAM.owl");
+        o3.read("..//EDAM1.owl");
         ontologies.add(o3);
         ontologiesName.add("EDAM ONTOLOGY");
         jCheckBox_Ontologia3.setForeground(Color.black);
         OntModel o4 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o4.read("..//gexo.owl");
+        o4.read("..//gexo1.owl");
         ontologies.add(o4);
         ontologiesName.add("GEXO ONTOLOGY");
         jCheckBox_Ontologia4.setForeground(Color.green);
@@ -539,10 +535,9 @@ public class Menu1 extends JFrame {
     static javax.swing.JCheckBox jCheckBox_Ontologia4;
     private static javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel loading;
     // End of variables declaration//GEN-END:variables
 }
