@@ -23,6 +23,7 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.LinkedList;
 import javax.swing.JFileChooser;
 import javax.swing.event.HyperlinkEvent;
@@ -69,7 +70,7 @@ public class Menu1 extends JFrame {
     boolean[] choosenOnto = {false, false, false, false};
     LinkedList<OntModel> ontologies;
     LinkedList<String> ontologiesName;
-    LinkedList<Statement> triple;
+    HashMap<Statement, LinkedList<String>> triple;
 
     public static void main(String args[]) throws FileNotFoundException, UnsupportedEncodingException {
         /* Create and display the form */
@@ -128,6 +129,11 @@ public class Menu1 extends JFrame {
         campoCerca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 campoCercaMouseClicked(evt);
+            }
+        });
+        campoCerca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoCercaActionPerformed(evt);
             }
         });
 
@@ -260,9 +266,7 @@ public class Menu1 extends JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(jScrollPane1))
+                            .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(ReadME, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -366,97 +370,106 @@ public class Menu1 extends JFrame {
     private void jButton_SearchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_SearchMousePressed
         // TODO add your handling code here:
         String cerca = campoCerca.getText();
-        String result = "";
-        if (jButton_Search.isEnabled() && !cerca.equals("")) {
+        if (!cerca.equals("Type a word to search...") && jButton_Search.isEnabled() && !cerca.equals("")) {
+            triple = new HashMap<>();
             Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
             jEditorPane1.setText("");
             for (int i = 0; i < choosenOnto.length; i++) {
                 if (choosenOnto[i]) {
-                    result = result.concat("<p><font size = '8' face = 'arial' color = 'red'><br>-----------------------<br>"
-                            + ontologiesName.get(i) + "<br>-----------------------<br></font></p><font size = '5' face = 'arial'>");
-                    result = result.concat(querying(ontologies.get(i), i + 1));
+                    querying(ontologies.get(i), i + 1);
                 }
             }
-            result = result.concat("</font></p>");
         }
-        jEditorPane1.setText(result);
+        printOntoResult();
         Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
     }//GEN-LAST:event_jButton_SearchMousePressed
 
-    public String querying(OntModel m_ont, int ontoNum) {
+    public void printOntoResult() {
+        String result = "<p><font size = '10' face = 'arial'><br>-----------------------<br>"
+                + "Risultato ricerca<br>-----------------------<br>Campo di ricerca:"+campoCerca.getText()+"<br>-----------------------<br></font></p>"
+                + "<br><table  border=\"1\" class=\"GeneratedTable\"><tbody>"
+                + "<font><br>"
+                + "<tr ><td><br>SOGGETTO<br></td><td><br>PREDICATO<br></td><td><br>OGGETTO<br></td><td><br>ONTOLOGIA<br></td></tr>";
+        for (Statement s : triple.keySet()) {
+            String subj = "", obj = "", pred = "";
+            Property label = null;
+            LinkedList<String> list = triple.get(s);
+            String listOnto = list.getFirst();
+            int indexOnto = ontologiesName.indexOf(listOnto);
+            if (indexOnto + 1 == 2 || indexOnto + 1 == 4) {
+                label = ontologies.get(indexOnto).getProperty("http://www.w3.org/2004/02/skos/core#prefLabel");
+            } else if (indexOnto + 1 == 1 || indexOnto + 1 == 3) {
+                label = ontologies.get(indexOnto).getProperty("http://www.w3.org/2000/01/rdf-schema#label");
+            }
+            if (s.getSubject().isResource()) {
+                if (s.getSubject().asResource().hasProperty(label)) {
+                    subj = ("<a href='" + s.getSubject().asResource().getURI() + "/'>"
+                            + s.getSubject().asResource().getRequiredProperty(label).getObject() + "</a>      ");
+                } else {
+                    subj = ((s.getSubject().getLocalName() + "      "));
+                }
+            } else {
+                subj = ((s.getSubject().toString() + "      "));
+            }
+            if (s.getPredicate().isResource()) {
+                if (s.getPredicate().asResource().hasProperty(label)) {
+                    pred = ("   <a href='" + s.getPredicate().asResource().getURI() + "/'>"
+                            + s.getPredicate().asResource().getRequiredProperty(label).getObject() + "</a>      ");
+                } else {
+                    pred = ((s.getPredicate().getLocalName() + "      "));
+                }
+            } else {
+                pred = ((s.getPredicate().toString() + "      "));
+            }
+            if (s.getObject().isResource()) {
+                if (s.getObject().asResource().hasProperty(label)) {
+                    obj = ("  <a href='" + s.getObject().asResource().getURI() + "/'>"
+                            + s.getObject().asResource().getRequiredProperty(label).getObject() + "</a>      ");
+                } else {
+                    obj = ((s.getObject().asResource().getLocalName() + "      "));
+                }
+            } else {
+                obj = ((s.getObject().toString() + "      "));
+            }
+
+            //nel caso di ontologia GO prendiamo come nome per gli url solo il label e non il tipo(xml)
+            if (indexOnto + 1 == 1) {
+                subj = subj.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
+                pred = pred.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
+                obj = obj.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
+            }
+            //eliminate label  NULL
+            if (subj.contains("null")) {
+                subj = subj.replace("null", "Blank Node");
+            }
+            result = result.concat("<tr><td>\n" + subj + "\n</td><td>" + pred + "</td><td>" + obj + "</td><td>" + list.toString()+ "</td></tr>");
+        }
+        result = result.concat("</font>");
+        jEditorPane1.setText(result);
+    }
+
+    public void querying(OntModel m_ont, int ontoNum) {
         String search = campoCerca.getText();
         String queryString = "SELECT DISTINCT ?x  WHERE { ?x ?y ?z . FILTER (regex(?z,\"" + search + "\",'i'))}";
         Query query = QueryFactory.create(queryString, Syntax.syntaxARQ);
         QueryExecution qexec = QueryExecutionFactory.create(query, m_ont);
-        String risultatoTemp = "";
-        risultatoTemp = risultatoTemp.concat("<br><table class=\"GeneratedTable\"><tbody>");
-        Property label = null;
-        String subj = "", obj = "", pred = "";
-        if (ontoNum == 2 || ontoNum == 4) {
-            label = m_ont.getProperty("http://www.w3.org/2004/02/skos/core#prefLabel");
-        } else if (ontoNum == 1 || ontoNum == 3) {
-            label = m_ont.getProperty("http://www.w3.org/2000/01/rdf-schema#label");
-        }
+
         for (ResultSet results = qexec.execSelect(); results.hasNext();) {
             QuerySolution soln = results.nextSolution();
             RDFNode node = soln.get("?x");
             Resource r = node.asResource();
             for (StmtIterator lP = r.listProperties(); lP.hasNext();) {
                 Statement s = lP.nextStatement();
-                if(!triple.contains(s)){
-                    triple.add(s);  
-                }
-                else{
-                    System.out.println("doppione trovato"+triple.get(triple.indexOf(s)).asTriple().toString()+"=="+s.asTriple().toString());
-                }
-                risultatoTemp = risultatoTemp.concat("<br>");
-                if (s.getSubject().isResource()) {
-                    if (s.getSubject().asResource().hasProperty(label)) {
-                        subj = ("<a href='" + s.getSubject().asResource().getURI() + "/'>"
-                                + s.getSubject().asResource().getRequiredProperty(label).getObject() + "</a>      ");
-                    } else {
-                        subj = ((s.getSubject().getLocalName() + "      "));
-                    }
+                if (triple.containsKey(s)) {
+                    triple.get(s).add(ontologiesName.get(ontoNum - 1));
                 } else {
-                    subj = ((s.getSubject().toString() + "      "));
-                }
-                if (s.getPredicate().isResource()) {
-                    if (s.getPredicate().asResource().hasProperty(label)) {
-                        pred = ("   <a href='" + s.getPredicate().asResource().getURI() + "/'>"
-                                + s.getPredicate().asResource().getRequiredProperty(label).getObject() + "</a>      ");
-                    } else {
-                        pred = ((s.getPredicate().getLocalName() + "      "));
-                    }
-                } else {
-                    pred = ((s.getPredicate().toString() + "      "));
-                }
-                if (s.getObject().isResource()) {
-                    if (s.getObject().asResource().hasProperty(label)) {
-                        obj = ("  <a href='" + s.getObject().asResource().getURI() + "/'>"
-                                + s.getObject().asResource().getRequiredProperty(label).getObject() + "</a>      ");
-                    } else {
-                        obj = ((s.getObject().asResource().getLocalName() + "      "));
-                    }
-                } else {
-                    obj = ((s.getObject().toString() + "      "));
-                }
-                
-                //nel caso di ontologia GO prendiamo come nome per gli url solo il label e non il tipo(xml)
-                if (ontoNum == 1) {
-                    subj = subj.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
-                    pred = pred.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
-                    obj = obj.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
-                }
-                //eliminate label  NULL
-                if (!subj.contains("null")) {
-                    risultatoTemp = risultatoTemp.concat("<tr><td>" + subj + "</td><td>" + pred + "</td><td>" + obj + "</td></tr><br>");
+                    LinkedList<String> list;
+                    list = new LinkedList<>();
+                    list.add(ontologiesName.get(ontoNum - 1));
+                    triple.put(s, list);
                 }
             }
-
         }
-        risultatoTemp = risultatoTemp.concat("</tbody></table><br>-------------------------------------------------------------------------<br>");
-        return risultatoTemp;
     }
 
 
@@ -471,23 +484,27 @@ public class Menu1 extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_Save_asActionPerformed
 
+    private void campoCercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCercaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoCercaActionPerformed
+
     private void caricaOntologie() {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o1.read("..//go.owl");
+        o1.read("..//go1.owl");
         ontologies.add(o1);
         ontologiesName.add("GO ONTOLOGY");
         jCheckBox_Ontologia1.setForeground(Color.blue);
         OntModel o2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o2.read("..//rexo.owl");
+        o2.read("..//rexo1.owl");
         ontologies.add(o2);
         ontologiesName.add("REXO ONTOLOGY");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o3.read("..//EDAM.owl");
+        o3.read("..//EDAM1.owl");
         ontologies.add(o3);
         ontologiesName.add("EDAM ONTOLOGY");
         jCheckBox_Ontologia3.setForeground(Color.black);
         OntModel o4 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o4.read("..//gexo.owl");
+        o4.read("..//gexo1.owl");
         ontologies.add(o4);
         ontologiesName.add("GEXO ONTOLOGY");
         jCheckBox_Ontologia4.setForeground(Color.green);
