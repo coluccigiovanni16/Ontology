@@ -23,7 +23,7 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import javax.swing.JFileChooser;
 import javax.swing.event.HyperlinkEvent;
@@ -70,7 +70,7 @@ public class Menu1 extends JFrame {
     boolean[] choosenOnto = {false, false, false, false};
     LinkedList<OntModel> ontologies;
     LinkedList<String> ontologiesName;
-    HashMap<Statement, LinkedList<String>> triple;
+    LinkedHashMap<Statement, LinkedList<String>> triple;
 
     public static void main(String args[]) throws FileNotFoundException, UnsupportedEncodingException {
         /* Create and display the form */
@@ -129,11 +129,6 @@ public class Menu1 extends JFrame {
         campoCerca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 campoCercaMouseClicked(evt);
-            }
-        });
-        campoCerca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoCercaActionPerformed(evt);
             }
         });
 
@@ -320,7 +315,22 @@ public class Menu1 extends JFrame {
         return campoCerca;
     }
 
-
+    private void searchInOnto() {
+        // TODO add your handling code here:
+        String cerca = campoCerca.getText();
+        if (!cerca.equals("Type a word to search...") && jButton_Search.isEnabled() && !cerca.equals("")) {
+            triple = new LinkedHashMap<>();
+            Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+            jEditorPane1.setText("");
+            for (int i = 0; i < choosenOnto.length; i++) {
+                if (choosenOnto[i]) {
+                    querying(ontologies.get(i), i + 1);
+                }
+            }
+        }
+        printOntoResult();
+        Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    }
     private void jCheckBox_Ontologia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia2ActionPerformed
         // TODO add your handling code here:
         if (jCheckBox_Ontologia2.isSelected()) {
@@ -369,27 +379,15 @@ public class Menu1 extends JFrame {
 
     private void jButton_SearchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_SearchMousePressed
         // TODO add your handling code here:
-        String cerca = campoCerca.getText();
-        if (!cerca.equals("Type a word to search...") && jButton_Search.isEnabled() && !cerca.equals("")) {
-            triple = new HashMap<>();
-            Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
-            jEditorPane1.setText("");
-            for (int i = 0; i < choosenOnto.length; i++) {
-                if (choosenOnto[i]) {
-                    querying(ontologies.get(i), i + 1);
-                }
-            }
-        }
-        printOntoResult();
-        Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        searchInOnto();
     }//GEN-LAST:event_jButton_SearchMousePressed
 
     public void printOntoResult() {
+        String subjPrev = "|"
         String result = "<p><font size = '10' face = 'arial'><br>-----------------------<br>"
-                + "Risultato ricerca<br>-----------------------<br>Campo di ricerca:"+campoCerca.getText()+"<br>-----------------------<br></font></p>"
-                + "<br><table  border=\"1\" class=\"GeneratedTable\"><tbody>"
-                + "<font><br>"
-                + "<tr ><td><br>SOGGETTO<br></td><td><br>PREDICATO<br></td><td><br>OGGETTO<br></td><td><br>ONTOLOGIA<br></td></tr>";
+                + "Risultato ricerca<br>-----------------------<br>Campo di ricerca:" + campoCerca.getText() + "<br>-----------------------<br></font></p>"
+                + "<br><table  width=\"100%\" border=\"1\" class=\"GeneratedTable\"><tbody>"
+                + "<font><br>";
         for (Statement s : triple.keySet()) {
             String subj = "", obj = "", pred = "";
             Property label = null;
@@ -442,9 +440,20 @@ public class Menu1 extends JFrame {
             if (subj.contains("null")) {
                 subj = subj.replace("null", "Blank Node");
             }
-            result = result.concat("<tr><td>\n" + subj + "\n</td><td>" + pred + "</td><td>" + obj + "</td><td>" + list.toString()+ "</td></tr>");
+            if (subj.compareTo(subjPrev) == 0) {
+                subj = "";
+            } else {
+                subjPrev = subj;
+                result = result.concat("</font></tbody></table><br><br><br><table  width=\"100%\" border=\"1\" class=\"GeneratedTable\"><tbody>"
+                        + "<font><br>"
+                        + "<tr ><td><br>SOGGETTO<br></td><td><br>PREDICATO<br>"
+                        + "</td><td><br>OGGETTO<br></td><td><br>ONTOLOGIA<br></td></tr>"
+                        + "<font><br>");
+            }
+            result = result.concat("<tr><td>" + subj + "</td><td>" + pred + "</td><td>" + obj + "</td><td>" + list.toString() + "</td></tr>");
         }
-        result = result.concat("</font>");
+
+        result = result.concat("</font></tbody></table>");
         jEditorPane1.setText(result);
     }
 
@@ -484,27 +493,23 @@ public class Menu1 extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_Save_asActionPerformed
 
-    private void campoCercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCercaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoCercaActionPerformed
-
     private void caricaOntologie() {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o1.read("..//go1.owl");
+        o1.read("..//go.owl");
         ontologies.add(o1);
         ontologiesName.add("GO ONTOLOGY");
         jCheckBox_Ontologia1.setForeground(Color.blue);
         OntModel o2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o2.read("..//rexo1.owl");
+        o2.read("..//rexo.owl");
         ontologies.add(o2);
         ontologiesName.add("REXO ONTOLOGY");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o3.read("..//EDAM1.owl");
+        o3.read("..//EDAM.owl");
         ontologies.add(o3);
         ontologiesName.add("EDAM ONTOLOGY");
         jCheckBox_Ontologia3.setForeground(Color.black);
         OntModel o4 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o4.read("..//gexo1.owl");
+        o4.read("..//gexo.owl");
         ontologies.add(o4);
         ontologiesName.add("GEXO ONTOLOGY");
         jCheckBox_Ontologia4.setForeground(Color.green);
