@@ -16,12 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.QueryExecutionFactory;
-import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.QuerySolution;
-import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.*;
 import com.hp.hpl.jena.rdf.model.*;
 import java.awt.Color;
@@ -74,8 +68,8 @@ public class Menu1 extends JFrame {
     String estensione;
     boolean[] choosenOnto = {false, false, false, false};
     LinkedList<OntModel> ontologies;
-    Property prefLabel;
     LinkedList<String> ontologiesName;
+    LinkedList<Statement> triple;
 
     public static void main(String args[]) throws FileNotFoundException, UnsupportedEncodingException {
         /* Create and display the form */
@@ -410,6 +404,12 @@ public class Menu1 extends JFrame {
             Resource r = node.asResource();
             for (StmtIterator lP = r.listProperties(); lP.hasNext();) {
                 Statement s = lP.nextStatement();
+                if(!triple.contains(s)){
+                    triple.add(s);  
+                }
+                else{
+                    System.out.println("doppione trovato"+triple.get(triple.indexOf(s)).asTriple().toString()+"=="+s.asTriple().toString());
+                }
                 risultatoTemp = risultatoTemp.concat("<br>");
                 if (s.getSubject().isResource()) {
                     if (s.getSubject().asResource().hasProperty(label)) {
@@ -442,7 +442,7 @@ public class Menu1 extends JFrame {
                     obj = ((s.getObject().toString() + "      "));
                 }
                 
-                //nel caso di ontologia GO prendiamo come nome per gli url solo il label e non il tipo(skos)
+                //nel caso di ontologia GO prendiamo come nome per gli url solo il label e non il tipo(xml)
                 if (ontoNum == 1) {
                     subj = subj.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
                     pred = pred.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
@@ -473,7 +473,7 @@ public class Menu1 extends JFrame {
 
     private void caricaOntologie() {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o1.read("..//go.owl");
+        //o1.read("..//go.owl");
         ontologies.add(o1);
         ontologiesName.add("GO ONTOLOGY");
         jCheckBox_Ontologia1.setForeground(Color.blue);
@@ -482,7 +482,7 @@ public class Menu1 extends JFrame {
         ontologies.add(o2);
         ontologiesName.add("REXO ONTOLOGY");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o3.read("..//EDAM.owl");
+        //o3.read("..//EDAM.owl");
         ontologies.add(o3);
         ontologiesName.add("EDAM ONTOLOGY");
         jCheckBox_Ontologia3.setForeground(Color.black);
