@@ -23,6 +23,8 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import javax.swing.JFileChooser;
@@ -383,10 +385,22 @@ public class Menu1 extends JFrame {
     }//GEN-LAST:event_jButton_SearchMousePressed
 
     public void printOntoResult() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        System.out.println(formatter.format(date));
         String subjPrev = "|";
-        String result = "<p><font size = '10' face = 'arial'><br>-----------------------<br>"
-                + "Risultato ricerca<br>-----------------------<br>Campo di ricerca:" + campoCerca.getText() + "<br>-----------------------<br></font></p>"
-                + "<br><table  width=\"100%\" border=\"1\" class=\"GeneratedTable\"><tbody><br>";
+        String result = "<p><font size = '10' face = 'arial'>"
+                + "REPORT<br>-----------------------<br>Campo di ricerca:   \"" + campoCerca.getText() + "\"<br>-----------------------<br>"
+                + "Data : " + formatter.format(date)+"<br>-----------------------<br>"
+                + "Ricerca effettuata sulle seguenti ontologie : |";
+        String usedOnto = "";
+        for (int i = 0; i < choosenOnto.length; i++) {
+            if (choosenOnto[i]) {
+                usedOnto = usedOnto + ontologiesName.get(i) + " | ";
+            }
+        }
+        result = result +usedOnto+ "<br>-----------------------<br><br><br><br><br>Risultato ricerca<br>"
+                + "</font></p><br><table  width=\"100%\" border=\"1\" class=\"GeneratedTable\"><tbody><br>";
         for (Statement s : triple.keySet()) {
             String subj = "", obj = "", pred = "";
             Property label = null;
@@ -451,9 +465,9 @@ public class Menu1 extends JFrame {
                         + "<td><font size = '8' face = 'arial'>ONTOLOGIA</font></td></tr>");
             }
             result = result.concat("<tr align=\"center\"><td><font size = '5' face = 'arial'>" + subj + "</font></td>"
-                                     + "<td ><font size = '5' face = 'arial'>" + pred + "</font></td>"
-                                     + "<td ><font size = '5' face = 'arial'>" + obj + "</font></td>"
-                                     + "<td ><font size = '5' face = 'arial'>" + list.toString() + "</font></td></tr>");
+                    + "<td ><font size = '5' face = 'arial'>" + pred + "</font></td>"
+                    + "<td ><font size = '5' face = 'arial'>" + obj + "</font></td>"
+                    + "<td ><font size = '5' face = 'arial'>" + list.toString() + "</font></td></tr>");
         }
 
         result = result.concat("</tbody></table>");
@@ -498,21 +512,21 @@ public class Menu1 extends JFrame {
 
     private void caricaOntologie() {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o1.read("..//go1.owl");
+        o1.read("..//go.owl");
         ontologies.add(o1);
         ontologiesName.add("GO ONTOLOGY");
         jCheckBox_Ontologia1.setForeground(Color.blue);
         OntModel o2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o2.read("..//rexo1.owl");
+        o2.read("..//rexo.owl");
         ontologies.add(o2);
         ontologiesName.add("REXO ONTOLOGY");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o3.read("..//EDAM1.owl");
+        o3.read("..//EDAM.owl");
         ontologies.add(o3);
         ontologiesName.add("EDAM ONTOLOGY");
         jCheckBox_Ontologia3.setForeground(Color.black);
         OntModel o4 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o4.read("..//gexo1.owl");
+        o4.read("..//gexo.owl");
         ontologies.add(o4);
         ontologiesName.add("GEXO ONTOLOGY");
         jCheckBox_Ontologia4.setForeground(Color.green);
