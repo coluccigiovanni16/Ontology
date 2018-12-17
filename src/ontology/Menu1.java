@@ -28,6 +28,7 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.event.HyperlinkEvent;
 
 /**
@@ -319,8 +320,19 @@ public class Menu1 extends JFrame {
 
     private void searchInOnto() {
         // TODO add your handling code here:
+
         String cerca = campoCerca.getText();
         if (!cerca.equals("Type a word to search...") && jButton_Search.isEnabled() && !cerca.equals("")) {
+            if ((choosenOnto[0]) == false) {
+                if ((choosenOnto[1]) == false) {
+                    if ((choosenOnto[2]) == false) {
+                        if ((choosenOnto[3]) == false) {
+                            JOptionPane d = new JOptionPane();
+                            d.showMessageDialog(null, "Attenzione! Selezionare almeno un'ontologia!", "ERRORE", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                }
+            }
             triple = new LinkedHashMap<>();
             Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
             jEditorPane1.setText("");
@@ -329,9 +341,12 @@ public class Menu1 extends JFrame {
                     querying(ontologies.get(i), i + 1);
                 }
             }
+            printOntoResult();
+            Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        } else {
+            JOptionPane d = new JOptionPane();
+            d.showMessageDialog(null, "Attenzione! Inserire una parola chiave!", "ERRORE", JOptionPane.ERROR_MESSAGE);
         }
-        printOntoResult();
-        Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     }
     private void jCheckBox_Ontologia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia2ActionPerformed
         // TODO add your handling code here:
@@ -391,7 +406,7 @@ public class Menu1 extends JFrame {
         String subjPrev = "|";
         String result = "<p><font size = '10' face = 'arial'>"
                 + "REPORT<br>-----------------------<br>Campo di ricerca:   \"" + campoCerca.getText() + "\"<br>-----------------------<br>"
-                + "Data : " + formatter.format(date)+"<br>-----------------------<br>"
+                + "Data : " + formatter.format(date) + "<br>-----------------------<br>"
                 + "Ricerca effettuata sulle seguenti ontologie : |";
         String usedOnto = "";
         for (int i = 0; i < choosenOnto.length; i++) {
@@ -399,7 +414,7 @@ public class Menu1 extends JFrame {
                 usedOnto = usedOnto + ontologiesName.get(i) + " | ";
             }
         }
-        result = result +usedOnto+ "<br>-----------------------<br><br><br><br><br>Risultato ricerca<br>"
+        result = result + usedOnto + "<br>-----------------------<br><br><br><br><br>Risultato ricerca<br>"
                 + "</font></p><br><table  width=\"100%\" border=\"1\" class=\"GeneratedTable\"><tbody><br>";
         for (Statement s : triple.keySet()) {
             String subj = "", obj = "", pred = "";
@@ -512,21 +527,21 @@ public class Menu1 extends JFrame {
 
     private void caricaOntologie() {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o1.read("..//go.owl");
+        o1.read("go1.owl");
         ontologies.add(o1);
         ontologiesName.add("GO ONTOLOGY");
         jCheckBox_Ontologia1.setForeground(Color.blue);
         OntModel o2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o2.read("..//rexo.owl");
+        o2.read("rexo1.owl");
         ontologies.add(o2);
         ontologiesName.add("REXO ONTOLOGY");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o3.read("..//EDAM.owl");
+        o3.read("EDAM1.owl");
         ontologies.add(o3);
         ontologiesName.add("EDAM ONTOLOGY");
         jCheckBox_Ontologia3.setForeground(Color.black);
         OntModel o4 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o4.read("..//gexo.owl");
+        o4.read("gexo1.owl");
         ontologies.add(o4);
         ontologiesName.add("GEXO ONTOLOGY");
         jCheckBox_Ontologia4.setForeground(Color.green);
