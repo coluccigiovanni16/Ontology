@@ -365,21 +365,23 @@ public class Menu1 extends JFrame {
     };
 
     public void specificResPrint() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date date = new Date();
-        System.out.println(formatter.format(date));
         String subjPrev = "|";
-        String result = "<p><font size = '10' face = 'arial'>"
-                + "REPORT<br>-----------------------<br>Campo di ricerca:   \"" + campoCerca.getText() + "\"<br>-----------------------<br>"
-                + "Data : " + formatter.format(date) + "<br>-----------------------<br>"
-                + "Ricerca effettuata sulle seguenti ontologie : |";
-
-        result = "<br>-----------------------<br><br><br><br><br>Risultato ricerca<br>"
-                + "</font></p><br><table  width=\"100%\" border=\"1\" class=\"GeneratedTable\"><tbody><br>";
+        String result = "";
         Resource r = specificResult.get(clickedInfo);
-
+        HashMap<Property, LinkedList<RDFNode>> table = new HashMap<>();
         for (StmtIterator lP = r.listProperties(); lP.hasNext();) {
             Statement s = lP.nextStatement();
+            Property p = s.getPredicate();
+            RDFNode o = s.getObject();
+            if (table.containsKey(p)) {
+                table.get(p).add(o);
+            } else {
+                LinkedList<RDFNode> list = new LinkedList<>();
+                list.add(o);
+                table.put(p, list);
+            }
+        }
+        for (Property p : table.keySet()) {
             String subj = "", obj = "", pred = "";
             Property label = null;
             String listOnto = icon.get(clickedInfo).getFirst();
@@ -389,35 +391,27 @@ public class Menu1 extends JFrame {
             } else if (indexOnto + 1 == 1 || indexOnto + 1 == 3) {
                 label = ontologies.get(indexOnto).getProperty("http://www.w3.org/2000/01/rdf-schema#label");
             }
-            if (s.getSubject().isResource()) {
-                if (s.getSubject().asResource().hasProperty(label)) {
-                    subj = ("<a href='" + s.getSubject().asResource().getURI() + "/'>"
-                            + s.getSubject().asResource().getRequiredProperty(label).getObject() + "</a>      ");
+            if (p.isResource()) {
+                if (p.asResource().hasProperty(label)) {
+                    pred = ("   <a href='" + p.asResource().getURI() + "/'>"
+                            + p.asResource().getRequiredProperty(label).getObject() + "</a>      ");
                 } else {
-                    subj = ((s.getSubject().getLocalName() + "      "));
+                    pred = ((p.getLocalName() + "      "));
                 }
             } else {
-                subj = ((s.getSubject().toString() + "      "));
+                pred = ((p.toString() + "      "));
             }
-            if (s.getPredicate().isResource()) {
-                if (s.getPredicate().asResource().hasProperty(label)) {
-                    pred = ("   <a href='" + s.getPredicate().asResource().getURI() + "/'>"
-                            + s.getPredicate().asResource().getRequiredProperty(label).getObject() + "</a>      ");
+            for (RDFNode o : table.get(p)) {
+                if (o.isResource()) {
+                    if (o.asResource().hasProperty(label)) {
+                        obj = ("  <a href='" + o.asResource().getURI() + "/'>"
+                                + o.asResource().getRequiredProperty(label).getObject() + "</a>      ");
+                    } else {
+                        obj = ((o.asResource().getLocalName() + "      "));
+                    }
                 } else {
-                    pred = ((s.getPredicate().getLocalName() + "      "));
+                    obj = ((o.toString() + "      "));
                 }
-            } else {
-                pred = ((s.getPredicate().toString() + "      "));
-            }
-            if (s.getObject().isResource()) {
-                if (s.getObject().asResource().hasProperty(label)) {
-                    obj = ("  <a href='" + s.getObject().asResource().getURI() + "/'>"
-                            + s.getObject().asResource().getRequiredProperty(label).getObject() + "</a>      ");
-                } else {
-                    obj = ((s.getObject().asResource().getLocalName() + "      "));
-                }
-            } else {
-                obj = ((s.getObject().toString() + "      "));
             }
 
             //nel caso di ontologia GO prendiamo come nome per gli url solo il label e non il tipo(xml)
@@ -434,16 +428,16 @@ public class Menu1 extends JFrame {
                 subj = "";
             } else {
                 subjPrev = subj;
-                result = result.concat("</tbody></table><br><br><br><table  width=\"100%\" border=\"1\" class=\"GeneratedTable\"><tbody>"
-                        + "<tr bgcolor=\"#E0FFFF\" align=\"center\">");
+                result = result.concat("<table  width=\"100%\" border=\"1\" class=\"GeneratedTable\"><tbody>"
+                        + "<tr align=\"center\">");
             }
-            result = result.concat("<tr align=\"center\"><td><font size = '5' face = 'arial'>" + subj + "</font></td>"
+            result = result.concat("<tr align=\"center\">"
                     + "<td ><font size = '5' face = 'arial'>" + pred + "</font></td>"
                     + "<td ><font size = '5' face = 'arial'>" + obj + "</font></td></tr>");
 
-            result = result.concat("</tbody></table>");
-            jEditorPane1.setText(result);
         }
+        result = result.concat("</tbody></table>");
+        jEditorPane1.setText(result);
     }
 
     private void createListInfo() {
@@ -465,6 +459,8 @@ public class Menu1 extends JFrame {
             if (((choosenOnto[0]) == false) && ((choosenOnto[1]) == false) && ((choosenOnto[2]) == false) && ((choosenOnto[3]) == false)) {
                 JOptionPane.showMessageDialog(null, "Attenzione! Selezionare almeno un'ontologia!", "ERRORE", JOptionPane.ERROR_MESSAGE);
             } else {
+                jScrollPane1.setBorder(new TitledBorder(""));
+                jEditorPane1.setText("");
                 TitledBorder titleBorder = new TitledBorder(campoCerca.getText());
                 titleBorder.setTitleFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
                 jScrollPane2.setBorder(titleBorder);
@@ -530,15 +526,6 @@ public class Menu1 extends JFrame {
         searchInOnto();
     }//GEN-LAST:event_jButton_SearchMousePressed
 
-    public void printOntoResult(Info info) {
-        Resource r = specificResult.get(info);
-
-        for (StmtIterator lP = r.listProperties(); lP.hasNext();) {
-            Statement s = lP.nextStatement();
-            System.out.println(s.asTriple().toString());
-        }
-    }
-
     public void querying(OntModel m_ont, int ontoNum) {
         String search = campoCerca.getText();
         String queryString = "SELECT DISTINCT ?x  WHERE { ?x ?y ?z . FILTER (regex(?z,\"" + search + "\",'i'))}";
@@ -565,10 +552,46 @@ public class Menu1 extends JFrame {
             QuerySolution soln = results.nextSolution();
             RDFNode node = soln.get("?x");
             Resource r = node.asResource();
-            String l = r.getRequiredProperty(label).getObject().toString();
-            String ID = r.getRequiredProperty(id).getObject().toString();
-            String def = r.getRequiredProperty(definition).getObject().toString();
-            String sub = r.getRequiredProperty(subclass).getObject().asResource().getRequiredProperty(label).getObject().toString();
+            String l, ID, def, sub;
+            if (r.isResource()) {
+                if (r.asResource().hasProperty(label)) {
+                    l = r.getRequiredProperty(label).getObject().toString();
+                } else {
+                    l=r.getLocalName();
+                }
+                if (r.asResource().hasProperty(id)) {
+                    ID = r.getRequiredProperty(id).getObject().toString();
+
+                } else {
+                    ID=r.getLocalName();
+                }
+                if (r.asResource().hasProperty(definition)) {
+                    def = r.getRequiredProperty(definition).getObject().toString();
+                } else {
+                    def=r.getLocalName();
+                }
+                if (r.asResource().hasProperty(subclass)) {
+                    sub = r.getRequiredProperty(subclass).getObject().asResource().getRequiredProperty(label).getObject().toString();
+
+                } else {
+                    sub=r.getLocalName();
+                }
+            } else {
+                l=r.toString();
+                ID=r.toString();
+                def=r.toString();
+                sub=r.toString();
+            }
+            if (ontoNum == 1) {
+                l = l.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
+                ID = ID.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
+                def = def.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
+                sub = sub.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
+            }
+            //eliminate label  NULL
+            if (l.contains("null")) {
+                l = l.replace("null", "Blank Node");
+            }
             Info info = new Info(l, ID, def, sub);
             System.out.println(info);
             if (icon.containsKey(info)) {
