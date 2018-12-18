@@ -473,11 +473,15 @@ public class Menu1 extends JFrame {
                         querying(ontologies.get(i), i + 1);
                     }
                 }
-                icon.keySet().forEach((i) -> {
-                    i.setIconName(icon.get(i).toString());
-                });
-                Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-                createListInfo();
+                if (icon.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "La ricerca non ha prodotto alcun risultato", "ERRORE", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    icon.keySet().forEach((i) -> {
+                        i.setIconName(icon.get(i).toString());
+                    });
+                    Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+                    createListInfo();
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Attenzione! Inserire una parola chiave!", "ERRORE", JOptionPane.ERROR_MESSAGE);
@@ -555,32 +559,40 @@ public class Menu1 extends JFrame {
             String l, ID, def, sub;
             if (r.isResource()) {
                 if (r.asResource().hasProperty(label)) {
-                    l = r.getRequiredProperty(label).getObject().toString();
+                    l = r.getRequiredProperty(label).getObject().toString() + " ";
                 } else {
-                    l=r.getLocalName();
+                    l = r.getLocalName() + " ";
                 }
                 if (r.asResource().hasProperty(id)) {
-                    ID = r.getRequiredProperty(id).getObject().toString();
+                    ID = r.getRequiredProperty(id).getObject().toString() + " ";
 
                 } else {
-                    ID=r.getLocalName();
+                    ID = r.getLocalName() + " ";
                 }
                 if (r.asResource().hasProperty(definition)) {
-                    def = r.getRequiredProperty(definition).getObject().toString();
+                    def = r.getRequiredProperty(definition).getObject().toString() + " ";
                 } else {
-                    def=r.getLocalName();
+                    def = r.getLocalName() + " ";
                 }
                 if (r.asResource().hasProperty(subclass)) {
-                    sub = r.getRequiredProperty(subclass).getObject().asResource().getRequiredProperty(label).getObject().toString();
-
+                    RDFNode subc = r.getRequiredProperty(subclass).getObject();
+                    if (subc.isResource()) {
+                        if (subc.asResource().hasProperty(label)) {
+                            sub = r.getRequiredProperty(subclass).getObject().asResource().getRequiredProperty(label).getObject().toString() + " ";
+                        } else {
+                            sub = subc.asResource().getLocalName() + "";
+                        }
+                    } else {
+                        sub = subc.toString() + " ";
+                    }
                 } else {
-                    sub=r.getLocalName();
+                    sub = r.getLocalName() + " ";
                 }
             } else {
-                l=r.toString();
-                ID=r.toString();
-                def=r.toString();
-                sub=r.toString();
+                l = r.toString() + " ";
+                ID = r.toString() + " ";
+                def = r.toString() + " ";
+                sub = r.toString() + " ";
             }
             if (ontoNum == 1) {
                 l = l.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
@@ -591,6 +603,9 @@ public class Menu1 extends JFrame {
             //eliminate label  NULL
             if (l.contains("null")) {
                 l = l.replace("null", "Blank Node");
+            }
+            if (def.contains("null")) {
+                def = l.replace("null", "Node without a specific description");
             }
             Info info = new Info(l, ID, def, sub);
             System.out.println(info);
