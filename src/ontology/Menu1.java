@@ -13,13 +13,12 @@ import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.query.*;
 import com.hp.hpl.jena.rdf.model.*;
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -29,14 +28,14 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.LinkedList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.HyperlinkEvent;
 
 /**
@@ -52,6 +51,7 @@ public class Menu1 extends JFrame {
         this.ontologies = new LinkedList<>();
         this.ontologiesName = new LinkedList<>();
         initComponents();
+
         jEditorPane1.addHyperlinkListener(e -> {
             if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
                 System.out.println(e.getURL());
@@ -65,8 +65,7 @@ public class Menu1 extends JFrame {
         });
 
         jEditorPane1.setEditable(false);
-//      caricaOntologie();
-
+        caricaOntologie();
     }
 
     /**
@@ -77,8 +76,9 @@ public class Menu1 extends JFrame {
     boolean[] choosenOnto = {false, false, false, false};
     LinkedList<OntModel> ontologies;
     LinkedList<String> ontologiesName;
-    LinkedHashMap<Statement, LinkedList<String>> triple;
-    private JList<String> listBook;
+    HashMap<Info, LinkedList<String>> icon;
+    HashMap<Info, Resource> specificResult;
+    Info clickedInfo;
 
     public static void main(String args[]) throws FileNotFoundException, UnsupportedEncodingException {
         /* Create and display the form */
@@ -93,6 +93,7 @@ public class Menu1 extends JFrame {
     }
 
     @SuppressWarnings("unchecked")
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -116,6 +117,7 @@ public class Menu1 extends JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<Info>();
+        jLabel3 = new javax.swing.JLabel();
 
         jButton_Cerca.setText("Cerca");
 
@@ -195,7 +197,6 @@ public class Menu1 extends JFrame {
 
         jButton_Search.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton_Search.setText("Search");
-        jButton_Search.setEnabled(false);
         jButton_Search.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jButton_SearchMousePressed(evt);
@@ -224,7 +225,10 @@ public class Menu1 extends JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ontology/ontlogo.jpg"))); // NOI18N
         jLabel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
         jEditorPane1.setEditable(false);
+        jEditorPane1.setBorder(null);
         jEditorPane1.setContentType("text/html"); // NOI18N
         jEditorPane1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jScrollPane1.setViewportView(jEditorPane1);
@@ -233,12 +237,15 @@ public class Menu1 extends JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ontology/logo_standard.png"))); // NOI18N
         jLabel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jScrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane2.setViewportView(jList1);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setText("Specific Result");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -284,7 +291,11 @@ public class Menu1 extends JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane2)
                                 .addGap(50, 50, 50)
-                                .addComponent(jScrollPane1)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(48, 48, 48))))
         );
 
@@ -311,7 +322,9 @@ public class Menu1 extends JFrame {
                             .addComponent(jCheckBox_Ontologia3)
                             .addComponent(jCheckBox_Ontologia4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,104 +345,26 @@ public class Menu1 extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createListBooks() {
-        DefaultListModel<Info> model = new DefaultListModel<Info>();
-        model.addElement(new Info("bag3", "464642643", "((CDPX1) -  A clinically and(CDPX1) -  A clinically and(CDPX1) -  A clinically and(CDPX1) -  A clinically andCDPX1) -  A clinically and", "gene", "gexo"));
-        model.addElement(new Info("bag3", "464642643", "((CDPX1) -  A clinically and(CDPX1) -  A clinically and(CDPX1) -  A clinically and(CDPX1) -  A clinically andCDPX1) -  A clinically and", "gene", "rexo"));
-        model.addElement(new Info("bag3", "464642643", "((CDPX1) -  A clinically and(CDPX1) -  A clinically and(CDPX1) -  A clinically and(CDPX1) -  A clinically andCDPX1) -  A clinically and", "gene", "go"));
-        model.addElement(new Info("bag3", "464642643", "((CDPX1) -  A clinically and(CDPX1) -  A clinically and(CDPX1) -  A clinically and(CDPX1) -  A clinically andCDPX1) -  A clinically and", "gene", "rexogexo"));
-        model.addElement(new Info("bag3", "464642643", "((CDPX1) -  A clinically and(CDPX1) -  A clinically and(CDPX1) -  A clinically and(CDPX1) -  A clinically andCDPX1) -  A clinically and", "gene", "edam"));
-        model.addElement(new Info("bag3", "464642643", "((CDPX1) -  A clinically and(CDPX1) -  A clinically and(CDPX1) -  A clinically and(CDPX1) -  A clinically andCDPX1) -  A clinically and", "gene", "gexo"));
-//        model.addElement(new Info("Java Programming", "B", "rexo"));
-//        model.addElement(new Info("C# Programming", "C", "go"));
-//        model.addElement(new Info("IOS Programming", "D", "edam"));
-//        model.addElement(new Info("Windows Phone Programming", "E", "rexogexo"));
-        // create JList with model
-        jList1.setModel(model);
-        MouseListener mouseListener = new MouseAdapter() {
-            public void mouseClicked(MouseEvent mouseEvent) {
-                JList<String> theList = (JList) mouseEvent.getSource();
-                if (mouseEvent.getClickCount() == 2) {
-                    int index = theList.locationToIndex(mouseEvent.getPoint());
-                    if (index >= 0) {
-                        Object o = theList.getModel().getElementAt(index);
-                        jEditorPane1.setText(o.toString());
-                    }
+    MouseListener mouseListener = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent mouseEvent) {
+            JList<String> theList = (JList) mouseEvent.getSource();
+            if (mouseEvent.getClickCount() == 2) {
+                int index = theList.locationToIndex(mouseEvent.getPoint());
+                if (index >= 0) {
+                    Object o = theList.getModel().getElementAt(index);
+                    clickedInfo = (Info) o;
+                    TitledBorder titleBorder = new TitledBorder(new LineBorder(Color.BLACK), clickedInfo.getLabel() + " | " + clickedInfo.getId() + " | " + clickedInfo.getSubClass());
+                    titleBorder.setTitleJustification(TitledBorder.CENTER);
+                    titleBorder.setTitleFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+                    jScrollPane1.setBorder(titleBorder);
+                    specificResPrint();
                 }
             }
-        };
-        jList1.addMouseListener(mouseListener);
-        // set cell renderer
-        jList1.setCellRenderer(new StatementRender());
-        jList1.setVisible(true);
-    }
-
-    private void searchInOnto() {
-        createListBooks();
-        String cerca = campoCerca.getText();
-        if (!cerca.equals("Type a word to search...") && jButton_Search.isEnabled() && !cerca.equals("")) {
-            if (!((choosenOnto[0]) == false) && ((choosenOnto[1]) == false) && ((choosenOnto[2]) == false) && ((choosenOnto[3]) == false)) {
-                JOptionPane.showMessageDialog(null, "Attenzione! Selezionare almeno un'ontologia!", "ERRORE", JOptionPane.ERROR_MESSAGE);
-            } else {
-                triple = new LinkedHashMap<>();
-                Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
-                jEditorPane1.setText("");
-                for (int i = 0; i < choosenOnto.length; i++) {
-                    if (choosenOnto[i]) {
-                        querying(ontologies.get(i), i + 1);
-                    }
-                }
-                printOntoResult();
-                Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Attenzione! Inserire una parola chiave!", "ERRORE", JOptionPane.ERROR_MESSAGE);
         }
-    }
-    private void jCheckBox_Ontologia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia2ActionPerformed
-        // TODO add your handling code here:
-        choosenOnto[1] = jCheckBox_Ontologia2.isSelected();
-    }//GEN-LAST:event_jCheckBox_Ontologia2ActionPerformed
+    };
 
-    private void ReadMEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReadMEMouseClicked
-        // TODO add your handling code here:
-        String path = "ReadMe.pdf";
-        File ReadMe = new File(path);
-        try {
-            Desktop.getDesktop().open(ReadMe);
-        } catch (IOException ex) {
-            Logger.getLogger(Menu1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_ReadMEMouseClicked
-
-
-    private void jCheckBox_Ontologia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia1ActionPerformed
-        // TODO add your handling code here:
-        choosenOnto[0] = jCheckBox_Ontologia1.isSelected();
-    }//GEN-LAST:event_jCheckBox_Ontologia1ActionPerformed
-
-    private void jCheckBox_Ontologia3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia3ActionPerformed
-        // TODO add your handling code here:
-        choosenOnto[2] = jCheckBox_Ontologia3.isSelected();
-    }//GEN-LAST:event_jCheckBox_Ontologia3ActionPerformed
-
-    private void jCheckBox_Ontologia4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia4ActionPerformed
-        // TODO add your handling code here:
-        choosenOnto[3] = jCheckBox_Ontologia4.isSelected();
-    }//GEN-LAST:event_jCheckBox_Ontologia4ActionPerformed
-
-
-    private void campoCercaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoCercaMouseClicked
-        // TODO add your handling code here:
-        campoCerca.setText("");
-    }//GEN-LAST:event_campoCercaMouseClicked
-
-    private void jButton_SearchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_SearchMousePressed
-        // TODO add your handling code here:
-        searchInOnto();
-    }//GEN-LAST:event_jButton_SearchMousePressed
-
-    public void printOntoResult() {
+    public void specificResPrint() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
         System.out.println(formatter.format(date));
@@ -438,19 +373,16 @@ public class Menu1 extends JFrame {
                 + "REPORT<br>-----------------------<br>Campo di ricerca:   \"" + campoCerca.getText() + "\"<br>-----------------------<br>"
                 + "Data : " + formatter.format(date) + "<br>-----------------------<br>"
                 + "Ricerca effettuata sulle seguenti ontologie : |";
-        String usedOnto = "";
-        for (int i = 0; i < choosenOnto.length; i++) {
-            if (choosenOnto[i]) {
-                usedOnto = usedOnto + ontologiesName.get(i) + " | ";
-            }
-        }
-        result = result + usedOnto + "<br>-----------------------<br><br><br><br><br>Risultato ricerca<br>"
+
+        result = "<br>-----------------------<br><br><br><br><br>Risultato ricerca<br>"
                 + "</font></p><br><table  width=\"100%\" border=\"1\" class=\"GeneratedTable\"><tbody><br>";
-        for (Statement s : triple.keySet()) {
+        Resource r = specificResult.get(clickedInfo);
+
+        for (StmtIterator lP = r.listProperties(); lP.hasNext();) {
+            Statement s = lP.nextStatement();
             String subj = "", obj = "", pred = "";
             Property label = null;
-            LinkedList<String> list = triple.get(s);
-            String listOnto = list.getFirst();
+            String listOnto = icon.get(clickedInfo).getFirst();
             int indexOnto = ontologiesName.indexOf(listOnto);
             if (indexOnto + 1 == 2 || indexOnto + 1 == 4) {
                 label = ontologies.get(indexOnto).getProperty("http://www.w3.org/2004/02/skos/core#prefLabel");
@@ -503,20 +435,108 @@ public class Menu1 extends JFrame {
             } else {
                 subjPrev = subj;
                 result = result.concat("</tbody></table><br><br><br><table  width=\"100%\" border=\"1\" class=\"GeneratedTable\"><tbody>"
-                        + "<tr bgcolor=\"#E0FFFF\" align=\"center\">"
-                        + "<td><font size = '8' face = 'arial'>SOGGETTO</font></td>"
-                        + "<td><font size = '8' face = 'arial'>PREDICATO</font></td>"
-                        + "<td><font size = '8' face = 'arial'>OGGETTO</font></td>"
-                        + "<td><font size = '8' face = 'arial'>ONTOLOGIA</font></td></tr>");
+                        + "<tr bgcolor=\"#E0FFFF\" align=\"center\">");
             }
             result = result.concat("<tr align=\"center\"><td><font size = '5' face = 'arial'>" + subj + "</font></td>"
                     + "<td ><font size = '5' face = 'arial'>" + pred + "</font></td>"
-                    + "<td ><font size = '5' face = 'arial'>" + obj + "</font></td>"
-                    + "<td ><font size = '5' face = 'arial'>" + list.toString() + "</font></td></tr>");
-        }
+                    + "<td ><font size = '5' face = 'arial'>" + obj + "</font></td></tr>");
 
-        result = result.concat("</tbody></table>");
-        jEditorPane1.setText(result);
+            result = result.concat("</tbody></table>");
+            jEditorPane1.setText(result);
+        }
+    }
+
+    private void createListInfo() {
+        DefaultListModel<Info> model = new DefaultListModel<>();
+        icon.keySet().forEach((i) -> {
+            model.addElement(i);
+        });
+        // create JList with model
+        jList1.setModel(model);
+        jList1.addMouseListener(mouseListener);
+        // set cell renderer
+        jList1.setCellRenderer(new StatementRender());
+        jList1.setVisible(true);
+    }
+
+    private void searchInOnto() {
+        String cerca = campoCerca.getText();
+        if (!cerca.equals("Type a word to search...") && jButton_Search.isEnabled() && !cerca.equals("")) {
+            if (((choosenOnto[0]) == false) && ((choosenOnto[1]) == false) && ((choosenOnto[2]) == false) && ((choosenOnto[3]) == false)) {
+                JOptionPane.showMessageDialog(null, "Attenzione! Selezionare almeno un'ontologia!", "ERRORE", JOptionPane.ERROR_MESSAGE);
+            } else {
+                TitledBorder titleBorder = new TitledBorder(campoCerca.getText());
+                titleBorder.setTitleFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+                jScrollPane2.setBorder(titleBorder);
+                Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+                jEditorPane1.setText("");
+                icon = new HashMap<>();
+                specificResult = new HashMap<>();
+                for (int i = 0; i < choosenOnto.length; i++) {
+                    if (choosenOnto[i]) {
+                        querying(ontologies.get(i), i + 1);
+                    }
+                }
+                icon.keySet().forEach((i) -> {
+                    i.setIconName(icon.get(i).toString());
+                });
+                Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+                createListInfo();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Attenzione! Inserire una parola chiave!", "ERRORE", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    private void jCheckBox_Ontologia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia2ActionPerformed
+        // TODO add your handling code here:
+        choosenOnto[1] = jCheckBox_Ontologia2.isSelected();
+    }//GEN-LAST:event_jCheckBox_Ontologia2ActionPerformed
+
+    private void ReadMEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReadMEMouseClicked
+        // TODO add your handling code here:
+        String path = "ReadMe.pdf";
+        File ReadMe = new File(path);
+        try {
+            Desktop.getDesktop().open(ReadMe);
+        } catch (IOException ex) {
+            Logger.getLogger(Menu1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ReadMEMouseClicked
+
+
+    private void jCheckBox_Ontologia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia1ActionPerformed
+        // TODO add your handling code here:
+        choosenOnto[0] = jCheckBox_Ontologia1.isSelected();
+    }//GEN-LAST:event_jCheckBox_Ontologia1ActionPerformed
+
+    private void jCheckBox_Ontologia3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia3ActionPerformed
+        // TODO add your handling code here:
+        choosenOnto[2] = jCheckBox_Ontologia3.isSelected();
+    }//GEN-LAST:event_jCheckBox_Ontologia3ActionPerformed
+
+    private void jCheckBox_Ontologia4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia4ActionPerformed
+        // TODO add your handling code here:
+        choosenOnto[3] = jCheckBox_Ontologia4.isSelected();
+    }//GEN-LAST:event_jCheckBox_Ontologia4ActionPerformed
+
+
+    private void campoCercaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoCercaMouseClicked
+        // TODO add your handling code here:
+        campoCerca.setText("");
+    }//GEN-LAST:event_campoCercaMouseClicked
+
+    private void jButton_SearchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_SearchMousePressed
+        // TODO add your handling code here:
+        searchInOnto();
+    }//GEN-LAST:event_jButton_SearchMousePressed
+
+    public void printOntoResult(Info info) {
+        Resource r = specificResult.get(info);
+
+        for (StmtIterator lP = r.listProperties(); lP.hasNext();) {
+            Statement s = lP.nextStatement();
+            System.out.println(s.asTriple().toString());
+        }
     }
 
     public void querying(OntModel m_ont, int ontoNum) {
@@ -524,22 +544,40 @@ public class Menu1 extends JFrame {
         String queryString = "SELECT DISTINCT ?x  WHERE { ?x ?y ?z . FILTER (regex(?z,\"" + search + "\",'i'))}";
         Query query = QueryFactory.create(queryString, Syntax.syntaxARQ);
         QueryExecution qexec = QueryExecutionFactory.create(query, m_ont);
-
+        Property label = null;
+        Property definition = null;
+        Property id = null;
+        if (ontoNum == 2 || ontoNum == 4) {
+            label = m_ont.getProperty("http://www.w3.org/2004/02/skos/core#prefLabel");
+            definition = m_ont.getProperty("http://www.w3.org/2004/02/skos/core#definition");
+            id = m_ont.getProperty("http://www.geneontology.org/formats/oboInOwl#id");
+        } else if (ontoNum == 1) {
+            label = m_ont.getProperty("http://www.w3.org/2000/01/rdf-schema#label");
+            definition = m_ont.getProperty("http://purl.obolibrary.org/obo/IAO_0000115");
+            id = m_ont.getProperty("http://www.geneontology.org/formats/oboInOwl#id");
+        } else if (ontoNum == 3) {
+            label = m_ont.getProperty("http://www.w3.org/2000/01/rdf-schema#label");
+            definition = m_ont.getProperty("http://www.geneontology.org/formats/oboInOwl#hasDefinition");
+            id = label;
+        }
+        Property subclass = m_ont.getProperty("http://www.w3.org/2000/01/rdf-schema#subClassOf");
         for (ResultSet results = qexec.execSelect(); results.hasNext();) {
             QuerySolution soln = results.nextSolution();
             RDFNode node = soln.get("?x");
             Resource r = node.asResource();
-            //creo info con prop definte e con onto 
-            for (StmtIterator lP = r.listProperties(); lP.hasNext();) {
-                Statement s = lP.nextStatement();
-                if (triple.containsKey(s)) {
-                    triple.get(s).add(ontologiesName.get(ontoNum - 1));
-                } else {
-                    LinkedList<String> list;
-                    list = new LinkedList<>();
-                    list.add(ontologiesName.get(ontoNum - 1));
-                    triple.put(s, list);
-                }
+            String l = r.getRequiredProperty(label).getObject().toString();
+            String ID = r.getRequiredProperty(id).getObject().toString();
+            String def = r.getRequiredProperty(definition).getObject().toString();
+            String sub = r.getRequiredProperty(subclass).getObject().asResource().getRequiredProperty(label).getObject().toString();
+            Info info = new Info(l, ID, def, sub);
+            System.out.println(info);
+            if (icon.containsKey(info)) {
+                icon.get(info).add(ontologiesName.get(ontoNum - 1));
+            } else {
+                LinkedList<String> list = new LinkedList<>();
+                list.add(ontologiesName.get(ontoNum - 1));
+                icon.put(info, list);
+                specificResult.put(info, r);
             }
         }
     }
@@ -560,21 +598,21 @@ public class Menu1 extends JFrame {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
         o1.read("go1.owl");
         ontologies.add(o1);
-        ontologiesName.add("GO ONTOLOGY");
+        ontologiesName.add("go");
         jCheckBox_Ontologia1.setForeground(Color.blue);
         OntModel o2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
         o2.read("rexo1.owl");
         ontologies.add(o2);
-        ontologiesName.add("REXO ONTOLOGY");
+        ontologiesName.add("rexo");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
         o3.read("EDAM1.owl");
         ontologies.add(o3);
-        ontologiesName.add("EDAM ONTOLOGY");
+        ontologiesName.add("edam");
         jCheckBox_Ontologia3.setForeground(Color.black);
         OntModel o4 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
         o4.read("gexo1.owl");
         ontologies.add(o4);
-        ontologiesName.add("GEXO ONTOLOGY");
+        ontologiesName.add("gexo");
         jCheckBox_Ontologia4.setForeground(Color.green);
         jButton_Search.setEnabled(true);
 
@@ -631,6 +669,7 @@ public class Menu1 extends JFrame {
     private static javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JList<Info> jList1;

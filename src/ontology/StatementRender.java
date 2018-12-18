@@ -20,6 +20,7 @@ public class StatementRender extends JPanel implements ListCellRenderer<Info> {
     private JLabel lbDefinition = new JLabel();
     private JPanel panelText;
     private JPanel panelIcon;
+    private String iconName;
 
     public StatementRender() {
         setLayout(new BorderLayout(5, 8));
@@ -39,8 +40,18 @@ public class StatementRender extends JPanel implements ListCellRenderer<Info> {
 
     public Component getListCellRendererComponent(JList<? extends Info> list,
             Info info, int index, boolean isSelected, boolean cellHasFocus) {
-
-        lbIcon.setIcon(new ImageIcon(getClass().getResource(info.getIconName() + ".jpg")));
+        if (info.getIconName().contains("rexo") &&info.getIconName().contains("gexo")) {
+            iconName = "rexogexo";
+        } else if (info.getIconName().contains("rexo")) {
+            iconName = "rexo";
+        } else if (info.getIconName().contains("gexo")) {
+            iconName = "gexo";
+        } else if (info.getIconName().contains("go")) {
+            iconName = "go";
+        } else if (info.getIconName().contains("edam")) {
+            iconName = "edam";
+        }
+        lbIcon.setIcon(new ImageIcon(getClass().getResource(iconName+ ".jpg")));
 
         lbLabel.setText(info.getLabel() + " | " + info.getId() + " | " + info.getSubClass());
         lbDefinition.setText(info.getDefinition());
