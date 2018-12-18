@@ -24,7 +24,7 @@ public class StatementRender extends JPanel implements ListCellRenderer<Info> {
 
     public StatementRender() {
         setLayout(new BorderLayout(5, 8));
-        this.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
+        this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.LIGHT_GRAY));
 
         panelText = new JPanel(new GridLayout(2, 1));
         panelText.add(lbLabel);
@@ -60,8 +60,12 @@ public class StatementRender extends JPanel implements ListCellRenderer<Info> {
         lbLabel.setOpaque(true);
         lbDefinition.setOpaque(true);
         lbIcon.setOpaque(true);
+        
+        
         lbLabel.setFont(new Font("Ariel ", Font.BOLD, 20));
+        lbDefinition.setFont(new Font("Ariel ", Font.BOLD, 15));
         lbLabel.setForeground(Color.BLACK);
+        lbDefinition.setForeground(Color.BLUE);
 
         // when select item
         if (isSelected) {

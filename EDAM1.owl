@@ -10497,6 +10497,8 @@
         <oboInOwl:hasDefinition>Information on a protein &apos;functional category&apos; node from the CATH database.</oboInOwl:hasDefinition>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/edam#obsolete"/>
         <rdfs:label>CATH functional category</rdfs:label>
+        <rdfs:label>CATH functional categy</rdfs:label>
+        <rdfs:label>CATH functial category</rdfs:label>
         <owl:deprecated>true</owl:deprecated>
     </owl:Class>
     
