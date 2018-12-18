@@ -54,7 +54,6 @@ public class Menu1 extends JFrame {
 
         jEditorPane1.addHyperlinkListener(e -> {
             if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
-                System.out.println(e.getURL());
                 Desktop desktop = Desktop.getDesktop();
                 try {
                     desktop.browse(e.getURL().toURI());
@@ -117,7 +116,6 @@ public class Menu1 extends JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<Info>();
-        jLabel3 = new javax.swing.JLabel();
 
         jButton_Cerca.setText("Cerca");
 
@@ -226,7 +224,7 @@ public class Menu1 extends JFrame {
         jLabel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(250, 400));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(150, 300));
 
         jEditorPane1.setEditable(false);
         jEditorPane1.setBorder(null);
@@ -241,14 +239,11 @@ public class Menu1 extends JFrame {
 
         jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(500, 400));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(600, 400));
 
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane2.setViewportView(jList1);
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel3.setText("Specific Result");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -294,11 +289,7 @@ public class Menu1 extends JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(50, 50, 50)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(50, 50, 50))))
         );
 
@@ -325,9 +316,7 @@ public class Menu1 extends JFrame {
                             .addComponent(jCheckBox_Ontologia3)
                             .addComponent(jCheckBox_Ontologia4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,6 +350,8 @@ public class Menu1 extends JFrame {
                     titleBorder.setTitleJustification(TitledBorder.CENTER);
                     titleBorder.setTitleFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
                     jScrollPane1.setBorder(titleBorder);
+                    //cambiare il colore dello sfondo
+                    //jEditorPane1.setBackground(new Color(209, 235, 255));
                     specificResPrint();
                 }
             }
@@ -368,8 +359,7 @@ public class Menu1 extends JFrame {
     };
 
     public void specificResPrint() {
-        String subjPrev = "|";
-        String result = "";
+        String result = "<br>";
         Resource r = specificResult.get(clickedInfo);
         HashMap<Property, LinkedList<RDFNode>> table = new HashMap<>();
         for (StmtIterator lP = r.listProperties(); lP.hasNext();) {
@@ -385,7 +375,7 @@ public class Menu1 extends JFrame {
             }
         }
         for (Property p : table.keySet()) {
-            String subj = "", obj = "", pred = "";
+            String obj = "", pred = "";
             Property label = null;
             String listOnto = icon.get(clickedInfo).getFirst();
             int indexOnto = ontologiesName.indexOf(listOnto);
@@ -416,30 +406,13 @@ public class Menu1 extends JFrame {
                     obj = ((o.toString() + "      "));
                 }
             }
-
-            //nel caso di ontologia GO prendiamo come nome per gli url solo il label e non il tipo(xml)
-            if (indexOnto + 1 == 1) {
-                subj = subj.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
-                pred = pred.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
-                obj = obj.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
-            }
-            //eliminate label  NULL
-            if (subj.contains("null")) {
-                subj = subj.replace("null", "Blank Node");
-            }
-            if (subj.compareTo(subjPrev) == 0) {
-                subj = "";
-            } else {
-                subjPrev = subj;
-                result = result.concat("<table  width=\"100%\" border=\"1\" class=\"GeneratedTable\"><tbody>"
-                        + "<tr align=\"center\">");
-            }
-            result = result.concat("<tr align=\"center\">"
-                    + "<td ><font size = '5' face = 'arial'>" + pred + "</font></td>"
-                    + "<td ><font size = '5' face = 'arial'>" + obj + "</font></td></tr>");
-
+//possibilità uno tutto in colonna 
+//            result = result.concat("<h1 align=\"center\"><font size = '5' color='blue' face = 'arial'>" + pred + "</font></h1>"
+//                    + "<h3 align=\"center\"><font size = '3' face = 'arial'>" + obj + "</font></h3><br><hr><br>");
+//possibilità due predicato : oggetto in colonna
+            result = result.concat("<h1 align=\"center\"><font size = '5' color='blue' face = 'arial'>" + pred + "  :  </font>"
+                    + "<font size = '5' face = 'arial'>" + obj + "</font></h1><br><hr><br>");
         }
-        result = result.concat("</tbody></table>");
         jEditorPane1.setText(result);
     }
 
@@ -611,7 +584,6 @@ public class Menu1 extends JFrame {
                 def = l.replace("null", "Node without a specific description");
             }
             Info info = new Info(l, ID, def, sub);
-            System.out.println(info);
             if (icon.containsKey(info)) {
                 icon.get(info).add(ontologiesName.get(ontoNum - 1));
             } else {
@@ -659,7 +631,7 @@ public class Menu1 extends JFrame {
 
     }
 
-    public static void sceglifile(String resultToPDF) {
+    public void sceglifile(String resultToPDF) {
         String filename;
         JFileChooser savefile = new JFileChooser();
         int returnVal = savefile.showOpenDialog(null);
@@ -668,7 +640,7 @@ public class Menu1 extends JFrame {
             filename = pr.getName();
             String path = savefile.getCurrentDirectory().getAbsolutePath() + "//" + filename + ".html";
             try {
-                scriviHTML(path, resultToPDF);
+                scriviHTML(path, "<h1>" + clickedInfo.getLabel() + "</h1><br>" + resultToPDF);
             } catch (IOException ex) {
                 Logger.getLogger(Menu1.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -710,7 +682,6 @@ public class Menu1 extends JFrame {
     private static javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JList<Info> jList1;
