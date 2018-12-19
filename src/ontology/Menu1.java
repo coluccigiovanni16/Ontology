@@ -116,6 +116,7 @@ public class Menu1 extends JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<Info>();
+        jButton1 = new javax.swing.JButton();
 
         jButton_Cerca.setText("Cerca");
 
@@ -224,12 +225,14 @@ public class Menu1 extends JFrame {
         jLabel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jScrollPane1.setAutoscrolls(true);
         jScrollPane1.setPreferredSize(new java.awt.Dimension(150, 300));
 
         jEditorPane1.setEditable(false);
         jEditorPane1.setBorder(null);
         jEditorPane1.setContentType("text/html"); // NOI18N
         jEditorPane1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jEditorPane1.setText("<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body vlink=\"red\">\r\n    <p style=\"margin-top: 0\">\r\n      \r\n    </p>\r\n  </body>\r\n</html>\r\n");
         jEditorPane1.setMinimumSize(new java.awt.Dimension(350, 400));
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -245,52 +248,67 @@ public class Menu1 extends JFrame {
         jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane2.setViewportView(jList1);
 
+        jButton1.setText("Leggenda");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(89, 89, 89)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(campoCerca)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(Ontologia, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jCheckBox_Ontologia1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jCheckBox_Ontologia2)
-                                                .addGap(8, 8, 8)
-                                                .addComponent(jCheckBox_Ontologia3)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jCheckBox_Ontologia4)))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(32, 32, 32)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 2, Short.MAX_VALUE))
+                        .addComponent(ReadME, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ReadME, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton_Save_as, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(50, 50, 50)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(50, 50, 50))))
+                        .addGap(50, 50, 50)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(jButton_Save_as, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(50, 50, 50))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(campoCerca)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(Ontologia, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBox_Ontologia1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBox_Ontologia2)
+                                .addGap(8, 8, 8)
+                                .addComponent(jCheckBox_Ontologia3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jCheckBox_Ontologia4)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(89, 89, 89)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jCheckBox_Ontologia1, jCheckBox_Ontologia2, jCheckBox_Ontologia3, jCheckBox_Ontologia4});
@@ -300,32 +318,35 @@ public class Menu1 extends JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(20, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(campoCerca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton_Search, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Ontologia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBox_Ontologia1)
                             .addComponent(jCheckBox_Ontologia2)
                             .addComponent(jCheckBox_Ontologia3)
-                            .addComponent(jCheckBox_Ontologia4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jCheckBox_Ontologia4)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_Save_as, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ReadME))
+                    .addComponent(ReadME)
+                    .addComponent(jButton1))
                 .addGap(15, 15, 15))
         );
 
@@ -348,7 +369,7 @@ public class Menu1 extends JFrame {
                     clickedInfo = (Info) o;
                     TitledBorder titleBorder = new TitledBorder(new LineBorder(Color.BLACK), clickedInfo.getLabel() + " | " + clickedInfo.getId() + " | " + clickedInfo.getSubClass());
                     titleBorder.setTitleJustification(TitledBorder.CENTER);
-                    titleBorder.setTitleFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+                    titleBorder.setTitleFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
                     jScrollPane1.setBorder(titleBorder);
                     //cambiare il colore dello sfondo
                     //jEditorPane1.setBackground(new Color(209, 235, 255));
@@ -386,7 +407,7 @@ public class Menu1 extends JFrame {
             }
             if (p.isResource()) {
                 if (p.asResource().hasProperty(label)) {
-                    pred = ("   <a href='" + p.asResource().getURI() + "/'>"
+                    pred = ("   <a href='" + p.asResource().getURI() + "/'style=\"color:blue\">"
                             + p.asResource().getRequiredProperty(label).getObject() + ":</a>      ");
                 } else {
                     pred = ((p.getLocalName() + ":"));
@@ -397,17 +418,26 @@ public class Menu1 extends JFrame {
             for (RDFNode o : table.get(p)) {
                 if (o.isResource()) {
                     if (o.asResource().hasProperty(label)) {
-                        obj += ("  <a href='" + o.asResource().getURI() + "/'>"
-                                + o.asResource().getRequiredProperty(label).getObject() + "</a>;<br>      ");
+                        obj += ("  <a href='" + o.asResource().getURI() + "/'style=\"color:blue\">"
+                                + o.asResource().getRequiredProperty(label).getObject() + "</a>");
                     } else {
-                        obj += ((o.asResource().getLocalName() + "      ")+";<br>");
+                        obj += ((o.asResource().getLocalName()));
                     }
                 } else {
-                    obj += ((o.toString() + ";<br>"));
+                    obj += ((o.toString()));
+                }
+                if (table.get(p).getLast().equals(o)) {
+                    obj += ".<br>";
+                } else {
+                    obj += ";<br>";
                 }
             }
+            if (indexOnto+1 == 1) {
+                pred = pred.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
+                obj = obj.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
+            }
 //possibilità uno tutto in colonna 
-            result = result.concat("<h1 align=\"center\"><font size = '6' color='blue' face = 'arial'>" + pred + "</font></h1>"
+            result = result.concat("<h1 align=\"center\"><font size = '6' color='#008080' face = 'arial'>" + pred + "</font></h1>"
                     + "<h3 align=\"center\"><font size = '5' face = 'arial'>" + obj + "</font></h3><hr><br>");
 //possibilità due predicato : oggetto in colonna
 //            result = result.concat("<h1 align=\"center\"><font size = '5' color='blue' face = 'arial'>" + pred + "  :  </font>"
@@ -437,8 +467,8 @@ public class Menu1 extends JFrame {
             } else {
                 jScrollPane1.setBorder(new TitledBorder(""));
                 jEditorPane1.setText("");
-                TitledBorder titleBorder = new TitledBorder(campoCerca.getText());
-                titleBorder.setTitleFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+                TitledBorder titleBorder = new TitledBorder("Campo cercato : " + campoCerca.getText());
+                titleBorder.setTitleFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
                 jScrollPane2.setBorder(titleBorder);
                 Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
                 jEditorPane1.setText("");
@@ -455,13 +485,13 @@ public class Menu1 extends JFrame {
                     icon.keySet().forEach((i) -> {
                         i.setIconName(icon.get(i).toString());
                     });
-                    Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
                     createListInfo();
                 }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Attenzione! Inserire una parola chiave!", "ERRORE", JOptionPane.ERROR_MESSAGE);
         }
+        Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     }
     private void jCheckBox_Ontologia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_Ontologia2ActionPerformed
         // TODO add your handling code here:
@@ -580,8 +610,17 @@ public class Menu1 extends JFrame {
             if (l.contains("null")) {
                 l = l.replace("null", "Blank Node");
             }
+            if (ID.contains("null")) {
+                ID = ID.replace("null", "N.A.");
+            }
+            if (sub.contains("null")) {
+                sub = sub.replace("null", "N.A.");
+            }
             if (def.contains("null")) {
                 def = l.replace("null", "Node without a specific description");
+            }
+            if (l.equals(ID)) {
+                ID = "N.A.";
             }
             Info info = new Info(l, ID, def, sub);
             if (icon.containsKey(info)) {
@@ -607,6 +646,18 @@ public class Menu1 extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_Save_asActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Le informazioni principali sono presentate nel riquadro"
+                + " result nel formato :\n   Label | ID | is_a\n\n N.A. = Not Avaiable", "Leggenda", JOptionPane.INFORMATION_MESSAGE);
+
+
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void caricaOntologie() {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
         o1.read("..//go.owl");
@@ -614,7 +665,7 @@ public class Menu1 extends JFrame {
         ontologiesName.add("go");
         jCheckBox_Ontologia1.setForeground(Color.blue);
         OntModel o2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o2.read("..//rexo1.owl");
+        o2.read("..//rexo.owl");
         ontologies.add(o2);
         ontologiesName.add("rexo");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
@@ -623,7 +674,7 @@ public class Menu1 extends JFrame {
         ontologiesName.add("edam");
         jCheckBox_Ontologia3.setForeground(Color.black);
         OntModel o4 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o4.read("..//gexo1.owl");
+        o4.read("..//gexo.owl");
         ontologies.add(o4);
         ontologiesName.add("gexo");
         jCheckBox_Ontologia4.setForeground(Color.green);
@@ -671,6 +722,7 @@ public class Menu1 extends JFrame {
     private javax.swing.JButton ReadME;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField campoCerca;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_Cerca;
     private javax.swing.JButton jButton_Save_as;
     private static javax.swing.JButton jButton_Search;
