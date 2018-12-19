@@ -65,7 +65,7 @@ public class StatementRender extends JPanel implements ListCellRenderer<Info> {
         lbLabel.setFont(new Font("Ariel ", Font.BOLD, 20));
         lbDefinition.setFont(new Font("Ariel ", Font.BOLD, 15));
         lbLabel.setForeground(Color.BLACK);
-        lbDefinition.setForeground(Color.BLUE);
+        lbDefinition.setForeground(Color.RED);
 
         // when select item
         if (isSelected) {

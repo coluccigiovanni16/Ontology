@@ -387,31 +387,31 @@ public class Menu1 extends JFrame {
             if (p.isResource()) {
                 if (p.asResource().hasProperty(label)) {
                     pred = ("   <a href='" + p.asResource().getURI() + "/'>"
-                            + p.asResource().getRequiredProperty(label).getObject() + "</a>      ");
+                            + p.asResource().getRequiredProperty(label).getObject() + ":</a>      ");
                 } else {
-                    pred = ((p.getLocalName() + "      "));
+                    pred = ((p.getLocalName() + ":"));
                 }
             } else {
-                pred = ((p.toString() + "      "));
+                pred = ((p.toString() + ":"));
             }
             for (RDFNode o : table.get(p)) {
                 if (o.isResource()) {
                     if (o.asResource().hasProperty(label)) {
-                        obj = ("  <a href='" + o.asResource().getURI() + "/'>"
-                                + o.asResource().getRequiredProperty(label).getObject() + "</a>      ");
+                        obj += ("  <a href='" + o.asResource().getURI() + "/'>"
+                                + o.asResource().getRequiredProperty(label).getObject() + "</a>;<br>      ");
                     } else {
-                        obj = ((o.asResource().getLocalName() + "      "));
+                        obj += ((o.asResource().getLocalName() + "      ")+";<br>");
                     }
                 } else {
-                    obj = ((o.toString() + "      "));
+                    obj += ((o.toString() + ";<br>"));
                 }
             }
 //possibilità uno tutto in colonna 
-//            result = result.concat("<h1 align=\"center\"><font size = '5' color='blue' face = 'arial'>" + pred + "</font></h1>"
-//                    + "<h3 align=\"center\"><font size = '3' face = 'arial'>" + obj + "</font></h3><br><hr><br>");
+            result = result.concat("<h1 align=\"center\"><font size = '6' color='blue' face = 'arial'>" + pred + "</font></h1>"
+                    + "<h3 align=\"center\"><font size = '5' face = 'arial'>" + obj + "</font></h3><hr><br>");
 //possibilità due predicato : oggetto in colonna
-            result = result.concat("<h1 align=\"center\"><font size = '5' color='blue' face = 'arial'>" + pred + "  :  </font>"
-                    + "<font size = '5' face = 'arial'>" + obj + "</font></h1><br><hr><br>");
+//            result = result.concat("<h1 align=\"center\"><font size = '5' color='blue' face = 'arial'>" + pred + "  :  </font>"
+//                    + "<font size = '5' face = 'arial'>" + obj + "</font></h1><br><hr><br>");
         }
         jEditorPane1.setText(result);
     }
@@ -609,21 +609,21 @@ public class Menu1 extends JFrame {
 
     private void caricaOntologie() {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o1.read("go1.owl");
+        o1.read("..//go.owl");
         ontologies.add(o1);
         ontologiesName.add("go");
         jCheckBox_Ontologia1.setForeground(Color.blue);
         OntModel o2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o2.read("rexo1.owl");
+        o2.read("..//rexo1.owl");
         ontologies.add(o2);
         ontologiesName.add("rexo");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o3.read("EDAM1.owl");
+        o3.read("..//EDAM.owl");
         ontologies.add(o3);
         ontologiesName.add("edam");
         jCheckBox_Ontologia3.setForeground(Color.black);
         OntModel o4 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o4.read("gexo1.owl");
+        o4.read("..//gexo1.owl");
         ontologies.add(o4);
         ontologiesName.add("gexo");
         jCheckBox_Ontologia4.setForeground(Color.green);
