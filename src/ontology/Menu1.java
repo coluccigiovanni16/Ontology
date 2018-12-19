@@ -166,6 +166,7 @@ public class Menu1 extends JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Result");
+        jLabel1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
         ReadME.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ReadME.setText("README");
@@ -306,7 +307,7 @@ public class Menu1 extends JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -336,9 +337,9 @@ public class Menu1 extends JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(20, 20, 20)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -367,7 +368,7 @@ public class Menu1 extends JFrame {
                 if (index >= 0) {
                     Object o = theList.getModel().getElementAt(index);
                     clickedInfo = (Info) o;
-                    TitledBorder titleBorder = new TitledBorder(new LineBorder(Color.BLACK), clickedInfo.getLabel() + " | " + clickedInfo.getId() + " | " + clickedInfo.getSubClass());
+                    TitledBorder titleBorder = new TitledBorder(new LineBorder(Color.BLUE), clickedInfo.getLabel() + " | " + clickedInfo.getId() + " | " + clickedInfo.getSubClass());
                     titleBorder.setTitleJustification(TitledBorder.CENTER);
                     titleBorder.setTitleFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
                     jScrollPane1.setBorder(titleBorder);
@@ -432,7 +433,7 @@ public class Menu1 extends JFrame {
                     obj += ";<br>";
                 }
             }
-            if (indexOnto+1 == 1) {
+            if (indexOnto + 1 == 1) {
                 pred = pred.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
                 obj = obj.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
             }
@@ -660,12 +661,12 @@ public class Menu1 extends JFrame {
 
     private void caricaOntologie() {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o1.read("..//go.owl");
+        //o1.read("..//go.owl");
         ontologies.add(o1);
         ontologiesName.add("go");
         jCheckBox_Ontologia1.setForeground(Color.blue);
         OntModel o2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o2.read("..//rexo.owl");
+        //o2.read("..//rexo.owl");
         ontologies.add(o2);
         ontologiesName.add("rexo");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
@@ -674,7 +675,7 @@ public class Menu1 extends JFrame {
         ontologiesName.add("edam");
         jCheckBox_Ontologia3.setForeground(Color.black);
         OntModel o4 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o4.read("..//gexo.owl");
+        //o4.read("..//gexo.owl");
         ontologies.add(o4);
         ontologiesName.add("gexo");
         jCheckBox_Ontologia4.setForeground(Color.green);
@@ -691,7 +692,8 @@ public class Menu1 extends JFrame {
             filename = pr.getName();
             String path = savefile.getCurrentDirectory().getAbsolutePath() + "//" + filename + ".html";
             try {
-                scriviHTML(path, "<h1>" + clickedInfo.getLabel() + "</h1><br>" + resultToPDF);
+                scriviHTML(path, "<h1><a href ='" + specificResult.get(clickedInfo).getURI() + "/' style=\"color:blue\">Risorsa : "
+                        + clickedInfo.getLabel() + "</a></h1><br>" + resultToPDF);
             } catch (IOException ex) {
                 Logger.getLogger(Menu1.class.getName()).log(Level.SEVERE, null, ex);
             }
