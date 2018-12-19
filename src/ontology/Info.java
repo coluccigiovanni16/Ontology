@@ -54,7 +54,7 @@ public class Info {
     }
 
     public void setIconName(String iconName) {
-        this.iconName += iconName+"|";
+        this.iconName = iconName;
     }
 
     @Override
