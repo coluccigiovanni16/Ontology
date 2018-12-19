@@ -380,7 +380,7 @@ public class Menu1 extends JFrame {
     };
 
     public void specificResPrint() {
-        String result = "<br>";
+        String result = "<br><table style=\"width:100%;\">";
         Resource r = specificResult.get(clickedInfo);
         HashMap<Property, LinkedList<RDFNode>> table = new HashMap<>();
         for (StmtIterator lP = r.listProperties(); lP.hasNext();) {
@@ -408,12 +408,12 @@ public class Menu1 extends JFrame {
             if (p.isResource()) {
                 if (p.asResource().hasProperty(label)) {
                     pred = ("   <a href='" + p.asResource().getURI() + "/'style=\"color:blue\">"
-                            + p.asResource().getRequiredProperty(label).getObject() + ":</a>      ");
+                            + p.asResource().getRequiredProperty(label).getObject() + "</a>");
                 } else {
-                    pred = ((p.getLocalName() + ":"));
+                    pred = ((p.getLocalName()));
                 }
             } else {
-                pred = ((p.toString() + ":"));
+                pred = ((p.toString()));
             }
             for (RDFNode o : table.get(p)) {
                 if (o.isResource()) {
@@ -427,7 +427,7 @@ public class Menu1 extends JFrame {
                     obj += ((o.toString()));
                 }
                 if (table.get(p).getLast().equals(o)) {
-                    obj += ".<br>";
+                    obj += ".";
                 } else {
                     obj += ";<br>";
                 }
@@ -436,13 +436,10 @@ public class Menu1 extends JFrame {
                 pred = pred.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
                 obj = obj.replace("^^http://www.w3.org/2001/XMLSchema#string", "");
             }
-//possibilità uno tutto in colonna 
-            result = result.concat("<h1 align=\"center\"><font size = '6' color='#008080' face = 'arial'>" + pred + "</font></h1>"
-                    + "<h3 align=\"center\"><font size = '5' face = 'arial'>" + obj + "</font></h3><hr><br>");
-//possibilità due predicato : oggetto in colonna
-//            result = result.concat("<h1 align=\"center\"><font size = '5' color='blue' face = 'arial'>" + pred + "  :  </font>"
-//                    + "<font size = '5' face = 'arial'>" + obj + "</font></h1><br><hr><br>");
+            result = result.concat("<tr><th style=\"border-right: 1px solid #000000;border-bottom: 1px solid #000000;\"><font size = '5' color='#008080' face = 'arial'>" + pred + ":</font></th>"
+                    + "<th style=\"border-bottom: 1px solid #000000;\"><font size = '5' face = 'arial'>" + obj + "</font</th></tr><br><hr><br>");
         }
+        result += "</table>";
         jEditorPane1.setText(result);
     }
 
@@ -480,7 +477,7 @@ public class Menu1 extends JFrame {
                 }
                 if (specificResult.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "La ricerca non ha prodotto alcun risultato", "ERRORE", JOptionPane.INFORMATION_MESSAGE);
-                }else{
+                } else {
                     createListInfo();
                 }
             }
@@ -654,12 +651,12 @@ public class Menu1 extends JFrame {
 
     private void caricaOntologie() {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o1.read("..//go.owl");
+        o1.read("..//go.owl");
         ontologies.add(o1);
         ontologiesName.add("go");
         jCheckBox_Ontologia1.setForeground(Color.blue);
         OntModel o2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o2.read("..//rexo.owl");
+        o2.read("..//rexo.owl");
         ontologies.add(o2);
         ontologiesName.add("rexo");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
@@ -668,7 +665,7 @@ public class Menu1 extends JFrame {
         ontologiesName.add("edam");
         jCheckBox_Ontologia3.setForeground(Color.black);
         OntModel o4 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        //o4.read("..//gexo.owl");
+        o4.read("..//gexo.owl");
         ontologies.add(o4);
         ontologiesName.add("gexo");
         jCheckBox_Ontologia4.setForeground(Color.green);
