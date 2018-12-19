@@ -75,7 +75,6 @@ public class Menu1 extends JFrame {
     boolean[] choosenOnto = {false, false, false, false};
     LinkedList<OntModel> ontologies;
     LinkedList<String> ontologiesName;
-    HashMap<Info, LinkedList<String>> icon;
     HashMap<Info, Resource> specificResult;
     Info clickedInfo;
 
@@ -399,7 +398,7 @@ public class Menu1 extends JFrame {
         for (Property p : table.keySet()) {
             String obj = "", pred = "";
             Property label = null;
-            String listOnto = icon.get(clickedInfo).getFirst();
+            String listOnto = clickedInfo.getIconName().split("|")[0];
             int indexOnto = ontologiesName.indexOf(listOnto);
             if (indexOnto + 1 == 2 || indexOnto + 1 == 4) {
                 label = ontologies.get(indexOnto).getProperty("http://www.w3.org/2004/02/skos/core#prefLabel");
@@ -449,7 +448,7 @@ public class Menu1 extends JFrame {
 
     private void createListInfo() {
         DefaultListModel<Info> model = new DefaultListModel<>();
-        icon.keySet().forEach((i) -> {
+        specificResult.keySet().forEach((i) -> {
             model.addElement(i);
         });
         // create JList with model
@@ -473,19 +472,15 @@ public class Menu1 extends JFrame {
                 jScrollPane2.setBorder(titleBorder);
                 Menu1.getFrames()[0].setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
                 jEditorPane1.setText("");
-                icon = new HashMap<>();
                 specificResult = new HashMap<>();
                 for (int i = 0; i < choosenOnto.length; i++) {
                     if (choosenOnto[i]) {
                         querying(ontologies.get(i), i + 1);
                     }
                 }
-                if (icon.isEmpty()) {
+                if (specificResult.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "La ricerca non ha prodotto alcun risultato", "ERRORE", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    icon.keySet().forEach((i) -> {
-                        i.setIconName(icon.get(i).toString());
-                    });
+                }else{
                     createListInfo();
                 }
             }
@@ -624,12 +619,10 @@ public class Menu1 extends JFrame {
                 ID = "N.A.";
             }
             Info info = new Info(l, ID, def, sub);
-            if (icon.containsKey(info)) {
-                icon.get(info).add(ontologiesName.get(ontoNum - 1));
+            if (specificResult.containsKey(info)) {
+                info.setIconName(ontologiesName.get(ontoNum - 1));
             } else {
-                LinkedList<String> list = new LinkedList<>();
-                list.add(ontologiesName.get(ontoNum - 1));
-                icon.put(info, list);
+                info.setIconName(ontologiesName.get(ontoNum - 1));
                 specificResult.put(info, r);
             }
         }
