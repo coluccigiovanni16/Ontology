@@ -248,7 +248,7 @@ public class Menu1 extends JFrame {
         jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane2.setViewportView(jList1);
 
-        jButton1.setText("Leggenda");
+        jButton1.setText("Legenda");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -640,7 +640,7 @@ public class Menu1 extends JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Le informazioni principali sono presentate nel riquadro"
-                + " result nel formato :\n   Label | ID | is_a\n\n N.A. = Not Avaiable", "Leggenda", JOptionPane.INFORMATION_MESSAGE);
+                + " result nel formato :\n   Label | ID | is_a\n\n N.A. = Not Avaiable", "Legenda", JOptionPane.INFORMATION_MESSAGE);
 
 
     }//GEN-LAST:event_jButton1MouseClicked
@@ -651,21 +651,21 @@ public class Menu1 extends JFrame {
 
     private void caricaOntologie() {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o1.read("..//go.owl");
+        o1.read("go1.owl");
         ontologies.add(o1);
         ontologiesName.add("go");
         jCheckBox_Ontologia1.setForeground(Color.blue);
         OntModel o2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o2.read("..//rexo.owl");
+        o2.read("rexo1.owl");
         ontologies.add(o2);
         ontologiesName.add("rexo");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o3.read("..//EDAM.owl");
+        o3.read("EDAM1.owl");
         ontologies.add(o3);
         ontologiesName.add("edam");
         jCheckBox_Ontologia3.setForeground(Color.black);
         OntModel o4 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o4.read("..//gexo.owl");
+        o4.read("gexo1.owl");
         ontologies.add(o4);
         ontologiesName.add("gexo");
         jCheckBox_Ontologia4.setForeground(Color.green);
