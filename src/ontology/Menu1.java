@@ -564,7 +564,6 @@ public class Menu1 extends JFrame {
                 }
                 if (r.asResource().hasProperty(id)) {
                     ID = r.getRequiredProperty(id).getObject().toString() + " ";
-
                 } else {
                     ID = r.getLocalName() + " ";
                 }
@@ -610,17 +609,20 @@ public class Menu1 extends JFrame {
                 sub = sub.replace("null", "N.A.");
             }
             if (def.contains("null")) {
-                def = l.replace("null", "Node without a specific description");
+                def = def.replace("null", "Node without a specific description");
             }
             if (l.equals(ID)) {
                 ID = "N.A.";
             }
             Info info = new Info(l, ID, def, sub);
-            if (specificResult.containsKey(info)) {
-                info.setIconName(ontologiesName.get(ontoNum - 1));
-            } else {
+            if (!(specificResult.containsKey(info))) {
                 info.setIconName(ontologiesName.get(ontoNum - 1));
                 specificResult.put(info, r);
+            } else {
+                specificResult.keySet().stream().filter((key) -> (key.equals(info))).forEachOrdered((key) -> {
+                    key.setIconName(ontologiesName.get(ontoNum - 1));
+                });
+                ;
             }
         }
     }
@@ -651,21 +653,21 @@ public class Menu1 extends JFrame {
 
     private void caricaOntologie() {
         OntModel o1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o1.read("go1.owl");
+        o1.read("..//go.owl");
         ontologies.add(o1);
         ontologiesName.add("go");
         jCheckBox_Ontologia1.setForeground(Color.blue);
         OntModel o2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o2.read("rexo1.owl");
+        o2.read("..//rexo.owl");
         ontologies.add(o2);
         ontologiesName.add("rexo");
         OntModel o3 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o3.read("EDAM1.owl");
+        o3.read("..//EDAM.owl");
         ontologies.add(o3);
         ontologiesName.add("edam");
         jCheckBox_Ontologia3.setForeground(Color.black);
         OntModel o4 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, null);
-        o4.read("gexo1.owl");
+        o4.read("..//gexo.owl");
         ontologies.add(o4);
         ontologiesName.add("gexo");
         jCheckBox_Ontologia4.setForeground(Color.green);
